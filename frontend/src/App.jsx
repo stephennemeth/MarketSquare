@@ -1,11 +1,11 @@
 import React, { useState, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './App.css';
-import LoadingSkeleton from "./components/LoadingSkeleton";
+import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import PrivateRoute from "./components/PrivateRoute";
 
 import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 const ViewItem = lazy(() => import("./pages/ViewItem"));
 const EditItem = lazy(() => import("./pages/EditItem"));

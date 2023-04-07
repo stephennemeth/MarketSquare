@@ -1,4 +1,12 @@
-import React, { useEffect, useState } from "react";
+export default function Home() {
+  return (
+    <div>
+      <h1>Home</h1>
+    </div>
+  );
+}
+
+/* import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Container, Grid } from "@mui/material";
 import { HotelCard } from "../components/HotelCard";
@@ -33,3 +41,4 @@ export default function Home({ setDarkMode }) {
     </>
   );
 }
+ */
