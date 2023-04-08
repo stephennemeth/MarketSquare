@@ -1,38 +1,56 @@
-export default function Home() {
-  return (
-    <div>
-      <h1>Home</h1>
-    </div>
-  );
-}
-
-/* import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Container, Grid } from "@mui/material";
-import { HotelCard } from "../components/HotelCard";
+import { ShopItemGalleryCard } from "../components/ShopItemGalleryCard";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
-import { getHotels } from "../api/request";
-import { useQuery } from "react-query";
 
-export default function Home({ setDarkMode }) {
-  const fetchHotels = async () => {
-    const { data } = await getHotels();
-    return data;
+  // TEMP for testing.
+  // TODO Remove
+  const ITEMS = [
+    {
+      id: 1,
+      slug: "gopro-hero-black-11",
+      name: "GoPro Hero Black 11",
+      description: "An action camera",
+      price: 399.99,
+      thumbnail_url: "https://bgr.com/wp-content/uploads/2022/09/gopro-hero11-black-1.jpg?quality=82&strip=all",
+      condtition: "New",
+      owner: "John Doe",
+    },
+    {
+      id: 2,
+      name: "iPhone 13 Pro Max",
+      description: "A smartphone",
+    },
+  ];
+
+export default function Home(authState, setDarkMode) {
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [itemsData, setItemsData] = useState([]);
+
+  const receiveItems = (receivedItems) => {
+    setItemsData(receivedItems);
+    setIsLoading(false);
   };
 
-  const { data, isLoading } = useQuery("hotels", fetchHotels);
+  // TODO: Make request to backend to get items
+  // Temp for now: use ITEMS
+  setTimeout(() => {
+    receiveItems(ITEMS);
+  }, 2000);
 
   return isLoading ? (
     <LoadingSkeleton />
   ) : (
     <>
-      <Navbar setDarkMode={setDarkMode} />
+      <Navbar setDarkMode={setDarkMode} authState={authState} />
       <main>
         <Container maxWidth={"lg"} sx={{ marginTop: 3 }}>
           <Grid container spacing={2}>
-            {data?.map((item) => (
+            {itemsData?.map((item) => (
               <Grid key={item.id} item xs={12} md={4}>
-                <HotelCard hotel={item} />
+                <ShopItemGalleryCard item={item} />
               </Grid>
             ))}
           </Grid>
@@ -41,4 +59,3 @@ export default function Home({ setDarkMode }) {
     </>
   );
 }
- */
