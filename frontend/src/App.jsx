@@ -20,16 +20,12 @@ function App() {
     setAuthState(newState);
   };
 
-  const updateDarkMode = (newState) => {
-    setDarkMode(newState);
-  };
-
   return (
     <BrowserRouter>
       <ThemeProviderComp darkMode={darkMode}>
         <Suspense fallback={<LoadingSkeleton />}>
           <Routes>
-            <Route path="/" element={<Home authState={authState} setDarkMode={updateDarkMode} />} />
+            <Route path="/" element={<Home authState={authState} setDarkMode={setDarkMode} />} />
             <Route path="/login" element={<Login authState={authState} setAuthState={updateAuthState} />} />
             <Route
               path="/item/view/:slug"

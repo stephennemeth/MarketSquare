@@ -1,11 +1,4 @@
-export function Navbar () {
-  return (
-      <div>
-      <h1>Navbar</h1>
-      </div>
-  );
-}
-/* import {
+import {
   AppBar,
   Avatar,
   Box,
@@ -20,30 +13,13 @@ export function Navbar () {
   Switch,
   Toolbar,
 } from "@mui/material";
-import { signOut } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { auth } from "../lib/firebase";
 import { MaterialUISwitch } from "./Switch";
 
-export const Navbar = () => {
-  const { currentUser, setDarkMode } = useContext(AuthContext);
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+export const Navbar = ({setDarkMode, authState}) => {
   const navigate = useNavigate();
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleLogout = async () => {
-    await auth.signOut().then(() => navigate("/"));
-  };
+  const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
   return (
     <AppBar position="sticky" color="inherit">
@@ -57,29 +33,30 @@ export const Navbar = () => {
             paddingY: 1.2,
           }}
         >
-          <Typography
-            onClick={() => navigate("/hotels")}
+         
+          <Typography  // TODO next here: Wrap Title in Box + place the logo
+            onClick={() => navigate("/")}
             sx={{ cursor: "pointer" }}
             variant="h6"
             color="inherit"
             component="div"
             fontWeight={"bold"}
           >
-            BookStay
+            MarketSquare
           </Typography>
           <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
             <FormGroup sx={{ display: { xs: "none", md: "flex" } }}>
               <FormControlLabel
                 control={
                   <MaterialUISwitch
-                    onChange={() => setDarkMode((prev) => !prev)}
+                    onChange={toogleDarkMode}
                   />
                 }
               />
             </FormGroup>
 
             <Typography
-              onClick={() => setDarkMode((prev) => !prev)}
+              onClick={toogleDarkMode}
               sx={{ display: { xs: "block", md: "none" }, cursor: "pointer" }}
               fontSize={15}
               variant="h6"
@@ -89,7 +66,7 @@ export const Navbar = () => {
               DarkMode
             </Typography>
             <Typography
-              onClick={() => navigate("/hotels")}
+              onClick={() => navigate("/")}
               sx={{ cursor: "pointer" }}
               fontSize={15}
               variant="h6"
@@ -101,49 +78,19 @@ export const Navbar = () => {
 
             <IconButton
               id="demo-positioned-menu"
-              onClick={handleClick}
+              onClick={() => navigate("/login")}
               size="small"
-              aria-controls={open ? "demo-positioned-menu" : undefined}
+              aria-controls={"demo-positioned-menu"}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+              aria-expanded={"true"}
             >
               <Avatar
-                src={currentUser?.photoURL}
                 sx={{ width: 32, height: 32 }}
               />
             </IconButton>
           </Box>
         </Toolbar>
-
-        <div>
-          <Menu
-            id="demo-positioned-menu"
-            aria-labelledby="demo-positioned-button"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-          >
-            <MenuItem
-              onClick={() => {
-                navigate("/my-profile");
-                handleClose;
-              }}
-            >
-              My Profile
-            </MenuItem>
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          </Menu>
-        </div>
       </Container>
     </AppBar>
   );
 };
- */

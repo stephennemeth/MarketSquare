@@ -61,7 +61,7 @@ const ITEMS = [
 
 ];
 
-export default function Home(authState, setDarkMode) {
+export default function Home({authState, setDarkMode}) {
 
   const [isLoading, setIsLoading] = useState(true);
   const [itemsData, setItemsData] = useState([]);
