@@ -2,27 +2,64 @@ import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Container, Grid } from "@mui/material";
 import { ShopItemGalleryCard } from "../components/ShopItemGalleryCard";
+import { CreateItemGalleryCard } from "../components/CreateItemGalleryCard";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
 
-  // TEMP for testing.
-  // TODO Remove
-  const ITEMS = [
-    {
-      id: 1,
-      slug: "gopro-hero-black-11",
-      name: "GoPro Hero Black 11",
-      description: "An action camera",
-      price: 399.99,
-      thumbnail_url: "https://bgr.com/wp-content/uploads/2022/09/gopro-hero11-black-1.jpg?quality=82&strip=all",
-      condtition: "New",
-      owner: "John Doe",
-    },
-    {
-      id: 2,
-      name: "iPhone 13 Pro Max",
-      description: "A smartphone",
-    },
-  ];
+// TEMP for testing.
+// TODO Remove
+const ITEMS = [
+  {
+    id: 1,
+    slug: "gopro-hero-black-11",
+    name: "GoPro Hero Black 11",
+    description: "An action camera",
+    price: 399.99,
+    condtition: "New",
+    owner: "John Doe",
+    thumbnail_url: "https://bgr.com/wp-content/uploads/2022/09/gopro-hero11-black-1.jpg?quality=82&strip=all",
+  },
+  {
+    id: 2,
+    slug: "iphone-13-pro-max",
+    name: "iPhone 13 Pro Max",
+    description: "A smartphone",
+    price: 1099.99,
+    condtition: "New",
+    owner: "Alice Appleseed",
+    thumbnail_url: "https://m-cdn.phonearena.com/images/article/130912-wide-two_1600/Apples-iPhone-13-5G-is-still-on-track-for-a-September-release.jpg"
+  },
+  {
+    id: 3,
+    slug: "macbook-pro-2021",
+    name: "MacBook Pro 2021",
+    description: "A laptop",
+    price: 1999.99,
+    condtition: "New",
+    owner: "Bob Bobson",
+    thumbnail_url: "https://cyberianstech.com/wp-content/uploads/2021/06/MacBook-Pro-14-inch-in-2021.jpg"
+  },
+  {
+    id: 4,
+    name: "JBL Headphones",
+    description: "A pair of headphones",
+  },
+  {
+    id: 5,
+    name: "Samsung Galaxy S21",
+    description: "A smartphone",
+  },
+  {
+    id: 6,
+    name: "Dell XPS 15",
+    description: "A laptop",
+  },
+  {
+    id: 7,
+    name: "Samsung Galaxy S21",
+    description: "A smartphone",
+  }
+
+];
 
 export default function Home(authState, setDarkMode) {
 
@@ -53,6 +90,9 @@ export default function Home(authState, setDarkMode) {
                 <ShopItemGalleryCard item={item} />
               </Grid>
             ))}
+            <Grid item xs={12} md={4}>
+              <CreateItemGalleryCard />
+            </Grid>
           </Grid>
         </Container>
       </main>
