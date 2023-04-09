@@ -1,23 +1,18 @@
 import {
   AppBar,
-  Avatar,
   Box,
-  Button,
   Container,
-  IconButton,
-  Menu,
-  MenuItem,
   Typography,
   FormGroup,
   FormControlLabel,
-  Switch,
   Toolbar,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MaterialUISwitch } from "./Switch";
 
-export const Navbar = ({setDarkMode, authState}) => {
+import { MaterialUISwitch } from "./Switch";
+import { NavbarMenu } from "./NavbarMenu";
+
+export const Navbar = ({ setDarkMode, authState }) => {
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -33,17 +28,17 @@ export const Navbar = ({setDarkMode, authState}) => {
             paddingY: 1.2,
           }}
         >
-         
-          <Typography  // TODO next here: Wrap Title in Box + place the logo
+          <Box
+            component="img"
+            sx={{
+              height: 80,
+              maxHeight: { xs: 60, md: 80 },
+              cursor: "pointer"
+            }}
+            alt="Marketsquare"
+            src="logo-long.png"
             onClick={() => navigate("/")}
-            sx={{ cursor: "pointer" }}
-            variant="h6"
-            color="inherit"
-            component="div"
-            fontWeight={"bold"}
-          >
-            MarketSquare
-          </Typography>
+          />
           <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
             <FormGroup sx={{ display: { xs: "none", md: "flex" } }}>
               <FormControlLabel
@@ -65,29 +60,9 @@ export const Navbar = ({setDarkMode, authState}) => {
             >
               DarkMode
             </Typography>
-            <Typography
-              onClick={() => navigate("/")}
-              sx={{ cursor: "pointer" }}
-              fontSize={15}
-              variant="h6"
-              color="inherit"
-              component="a"
-            >
-              Home
-            </Typography>
 
-            <IconButton
-              id="demo-positioned-menu"
-              onClick={() => navigate("/login")}
-              size="small"
-              aria-controls={"demo-positioned-menu"}
-              aria-haspopup="true"
-              aria-expanded={"true"}
-            >
-              <Avatar
-                sx={{ width: 32, height: 32 }}
-              />
-            </IconButton>
+            <NavbarMenu authState={authState} />
+
           </Box>
         </Toolbar>
       </Container>
