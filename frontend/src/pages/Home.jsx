@@ -86,7 +86,7 @@ export default function Home({authState, setDarkMode}) {
           <Grid container spacing={2}>
             {itemsData?.map((item) => (
               <Grid key={item.id} item xs={12} md={4}>
-                <ShopItemGalleryCard item={item} />
+                <ShopItemGalleryCard item={item} authState={authState} />
               </Grid>
             ))}
           </Grid>
