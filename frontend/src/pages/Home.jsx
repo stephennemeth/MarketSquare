@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { Container, Grid } from "@mui/material";
 import { ShopItemGalleryCard } from "../components/ShopItemGalleryCard";
-import { CreateItemGalleryCard } from "../components/CreateItemGalleryCard";
 import { LoadingSkeleton } from "../components/LoadingSkeleton";
 
 // TEMP for testing.
@@ -90,9 +89,6 @@ export default function Home({authState, setDarkMode}) {
                 <ShopItemGalleryCard item={item} />
               </Grid>
             ))}
-            <Grid item xs={12} md={4}>
-              <CreateItemGalleryCard />
-            </Grid>
           </Grid>
         </Container>
       </main>
