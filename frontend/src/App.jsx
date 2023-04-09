@@ -27,10 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home authState={authState} setDarkMode={setDarkMode} />} />
             <Route path="/login" element={<Login authState={authState} setAuthState={updateAuthState} />} />
-            <Route
-              path="/item/view/:slug"
-              element={<PrivateRoute component={ViewItem} authState={authState} />}
-            />
+            <Route path="/item/view/:slug" element={<ViewItem authState={authState} />} />
             <Route
               path="/item/edit/:slug"
               element={<PrivateRoute component={EditItem} authState={authState} />}
