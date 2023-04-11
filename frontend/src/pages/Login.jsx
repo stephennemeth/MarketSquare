@@ -65,6 +65,7 @@ export default function Login({ authState, setAuthState }) {
                     </Typography>
                     <TextField
                         label="Username"
+                        name="username"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -82,6 +83,7 @@ export default function Login({ authState, setAuthState }) {
 
                     <TextField
                         label="Password"
+                        name="password"
                         variant="outlined"
                         fullWidth
                         margin="normal"
