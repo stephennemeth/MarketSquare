@@ -137,4 +137,3 @@ export default function Login({ authState, setAuthState }) {
         </>
     );
 }
-
