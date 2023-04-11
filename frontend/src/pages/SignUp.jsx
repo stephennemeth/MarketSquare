@@ -127,7 +127,6 @@ export default function SignUpPage({ authState, setAuthState }) {
                             width: "100%",
                             justifyContent: 'center',
                             alignItems: 'center',
-                            mt: 1
                         }}
                     >
                         <Grid2 item>
@@ -224,7 +223,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                     />
                     <Grid2 
                         container 
-                        spacing={2}
+                        spacing={5}
                         sx={{
                             display: 'flex',
                             width: "100%",
