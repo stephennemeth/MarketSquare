@@ -82,6 +82,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                         <Grid2 item>
                             <TextField
                                 label="First Name"
+                                name="firstname"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
@@ -101,6 +102,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                         <Grid2 item>
                             <TextField
                                 label="Last Name"
+                                name="lastname"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
@@ -131,6 +133,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                         <Grid2 item>
                             <TextField
                                 label="Email"
+                                name="email"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
@@ -150,6 +153,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                         <Grid2 item>
                             <TextField
                                 label="Phone Number"
+                                name="number"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
@@ -169,6 +173,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                     </Grid2>
                     <TextField
                         label="Username"
+                        name="username"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -186,6 +191,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                     />
                     <TextField
                         label="Password"
+                        name="password"
                         variant="outlined"
                         fullWidth
                         margin="normal"
@@ -204,6 +210,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                     />
                     <TextField
                         label="Confirm Password"
+                        name="confirm"
                         variant="outlined"
                         fullWidth
                         margin="normal"
