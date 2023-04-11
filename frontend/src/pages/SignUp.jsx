@@ -60,7 +60,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                         maxWidth: '60%',
                         border: '2px solid #3f51b5',
                         borderRadius: 5,
-                        padding: 5,
+                        padding: 3,
                     }}
                 >
                     <Typography
@@ -70,7 +70,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                     </Typography>
                     <Grid2
                         container 
-                        spacing={3}
+                        spacing={5}
                         sx={{
                             display: 'flex',
                             width: "100%",
@@ -122,7 +122,7 @@ export default function SignUpPage({ authState, setAuthState }) {
                     </Grid2>
                     <Grid2
                         container 
-                        spacing={3}
+                        spacing={5}
                         sx={{
                             display: 'flex',
                             width: "100%",
