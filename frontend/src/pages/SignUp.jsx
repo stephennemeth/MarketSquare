@@ -7,7 +7,6 @@ import { Navbar } from '../components/Navbar';
 import { MaterialUISwitch } from "../components/Switch";
 import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
-import { MuiTelInput } from 'mui-tel-input'
 
 export default function SignUpPage({ authState, setAuthState }) {
     const navigate = useNavigate();
