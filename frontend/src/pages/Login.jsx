@@ -8,21 +8,24 @@ import { MaterialUISwitch } from "../components/Switch";
 import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
+
 export default function Login({ authState, setAuthState }) {
     const navigate = useNavigate();
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [loginState, setLoginState] = useState({
+        username: '',
+        password: ''
+    })
+
+    const handleChange = (event) => {
+        const { name, value } = event.target 
+        setLoginState((prevState) => ({
+            ...prevState,
+            [name] : value
+        }))
+    }
 
     const onSubmit = async () => {
         return
-    }
-
-    const onUsernameChange = (event) => {
-        setUsername(event.target.value)
-    }
-
-    const onPasswordChange = (event) => {
-        setPassword(event.target.value)
     }
 
     const goToSignUp = () => {
@@ -67,7 +70,7 @@ export default function Login({ authState, setAuthState }) {
                         fullWidth
                         margin="normal"
                         required
-                        onChange={onUsernameChange}
+                        onChange={handleChange}
                         sx={{
                             '& .MuiOutlinedInput-root': {
                               borderRadius: 10,
@@ -85,7 +88,7 @@ export default function Login({ authState, setAuthState }) {
                         margin="normal"
                         required
                         type="password"
-                        onChange={onPasswordChange}
+                        onChange={handleChange}
                         sx={{
                             '& .MuiOutlinedInput-root': {
                               borderRadius: 10,

@@ -7,26 +7,34 @@ import { Navbar } from '../components/Navbar';
 import { MaterialUISwitch } from "../components/Switch";
 import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import { MuiTelInput } from 'mui-tel-input'
 
-export default function Login({ authState, setAuthState }) {
+export default function SignUpPage({ authState, setAuthState }) {
     const navigate = useNavigate();
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [signUpState, setSignUpState] = useState({
+        firstname: '',
+        lastname: '',
+        username: '',
+        email: '',
+        number: '',
+        password: '',
+        confirm: ''
+    })
+
+    const handleChange = (event) => {
+        const {name, value} = event.target 
+        setSignUpState((prevState) => ({
+            ...prevState,
+            [name] : value
+        }))
+    }
 
     const onSubmit = async () => {
         return
     }
 
-    const onUsernameChange = (event) => {
-        setUsername(event.target.value)
-    }
-
-    const onPasswordChange = (event) => {
-        setPassword(event.target.value)
-    }
-
-    const goToSignUp = () => {
-        navigate("/signup")
+    const goToLogin = () => {
+        navigate("/login")
     }
 
     return (
@@ -50,7 +58,7 @@ export default function Login({ authState, setAuthState }) {
                         flexDirection: 'column',
                         alignItems: 'center',
                         width: '100%',
-                        maxWidth: '50%',
+                        maxWidth: '60%',
                         border: '2px solid #3f51b5',
                         borderRadius: 5,
                         padding: 5,
@@ -59,16 +67,117 @@ export default function Login({ authState, setAuthState }) {
                     <Typography
                         variant="h4"
                     >
-                        Login
+                        Sign Up
                     </Typography>
+                    <Grid2
+                        container 
+                        spacing={3}
+                        sx={{
+                            display: 'flex',
+                            width: "100%",
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            mt: 1
+                        }}
+                    >
+                        <Grid2 item>
+                            <TextField
+                                label="First Name"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                required
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                    },
+                                    '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                    },
+                                }}
+                            />
+                        </Grid2>
+                        <Grid2 item>
+                            <TextField
+                                label="Last Name"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                required
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                    },
+                                    '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                    },
+                                }}
+                            />
+                        </Grid2>
+                    </Grid2>
+                    <Grid2
+                        container 
+                        spacing={3}
+                        sx={{
+                            display: 'flex',
+                            width: "100%",
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            mt: 1
+                        }}
+                    >
+                        <Grid2 item>
+                            <TextField
+                                label="Email"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                required
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                    },
+                                    '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                    },
+                                }}
+                            />
+                        </Grid2>
+                        <Grid2 item>
+                            <TextField
+                                label="Phone Number"
+                                variant="outlined"
+                                fullWidth
+                                margin="normal"
+                                required
+                                onChange={handleChange}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: 10,
+                                    },
+                                    '& .MuiOutlinedInput-input': {
+                                        borderRadius: 10,
+                                    },
+                                }}
+                            />
+                        </Grid2>
+                    </Grid2>
                     <TextField
                         label="Username"
                         variant="outlined"
                         fullWidth
                         margin="normal"
                         required
-                        onChange={onUsernameChange}
+                        onChange={handleChange}
                         sx={{
+                            width: '70%',
                             '& .MuiOutlinedInput-root': {
                               borderRadius: 10,
                             },
@@ -77,7 +186,6 @@ export default function Login({ authState, setAuthState }) {
                             },
                           }}
                     />
-
                     <TextField
                         label="Password"
                         variant="outlined"
@@ -85,8 +193,27 @@ export default function Login({ authState, setAuthState }) {
                         margin="normal"
                         required
                         type="password"
-                        onChange={onPasswordChange}
+                        onChange={handleChange}
                         sx={{
+                            width: '70%',
+                            '& .MuiOutlinedInput-root': {
+                              borderRadius: 10,
+                            },
+                            '& .MuiOutlinedInput-input': {
+                              borderRadius: 10,
+                            },
+                          }}
+                    />
+                    <TextField
+                        label="Confirm Password"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        required
+                        type="password"
+                        onChange={handleChange}
+                        sx={{
+                            width: '70%',
                             '& .MuiOutlinedInput-root': {
                               borderRadius: 10,
                             },
@@ -97,7 +224,7 @@ export default function Login({ authState, setAuthState }) {
                     />
                     <Grid2 
                         container 
-                        spacing={5}
+                        spacing={2}
                         sx={{
                             display: 'flex',
                             width: "100%",
@@ -115,7 +242,7 @@ export default function Login({ authState, setAuthState }) {
                                     width: '120px'
                                 }}
                             >
-                                Login
+                                Sign Up
                             </Button>
                        </Grid2>
                        <Grid2>
@@ -126,9 +253,9 @@ export default function Login({ authState, setAuthState }) {
                                     borderRadius: "50px",
                                     width: '120px'
                                 }}
-                                onClick={goToSignUp}
+                                onClick={goToLogin}
                             >
-                                Sign Up
+                                Login
                             </Button>
                        </Grid2>
                     </Grid2>
