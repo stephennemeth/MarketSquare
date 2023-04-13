@@ -32,7 +32,7 @@ function App() {
             <Route path="/item/view/:slug" element={<ViewItem authState={authState} />} />
             <Route
               path="/item/edit/:slug"
-              element={<PrivateRoute component={EditItem} authState={authState} />}
+              element={<PrivateRoute component={EditItem} authState={authState}/>}
             />
             <Route
               path="/item/create"
