@@ -11,13 +11,12 @@ import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
     const navigate = useNavigate();
     const [signUpState, setSignUpState] = useState({
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         username: '',
         email: '',
         number: '',
         password: '',
-        confirm: ''
     })
     
     const handleChange = (event) => {
@@ -29,7 +28,21 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
     }
 
     const onSubmit = async () => {
-        return
+        await fetch('http://localhost:8082/api/users/',{
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json'
+            },
+            body : JSON.stringify({
+                "firstName" : signUpState.firstName,
+                "lastName" : signUpState.lastName,
+                "username" : signUpState.lastName,
+                "email" : signUpState.email,
+                "number" : signUpState.number,
+                "password" : signUpState.password
+            })
+        })
     }
 
     const goToLogin = () => {
@@ -82,7 +95,7 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                         <Grid2 item>
                             <TextField
                                 label="First Name"
-                                name="firstname"
+                                name="firstName"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
@@ -102,7 +115,7 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                         <Grid2 item>
                             <TextField
                                 label="Last Name"
-                                name="lastname"
+                                name="lastName"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
@@ -240,6 +253,7 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                     >
                        <Grid2 item>
                             <Button
+                                onClick={onSubmit}
                                 variant="contained"
                                 sx={{
                                     fontSize: 16,

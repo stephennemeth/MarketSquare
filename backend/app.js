@@ -4,11 +4,13 @@ const port = process.env.PORT || 8082;
 
 const mongoose = require('mongoose')
 const cors = require('cors')
+const usersRouter = require('./routes/users');
 
 
 app.use(cors({ origin: true, credentials: true}))
 
 app.use(express.json({ extended: false}));
+app.use('/api/users', usersRouter)
 app.get('/', (req, res) => res.send('Hello world!'));
 
 
