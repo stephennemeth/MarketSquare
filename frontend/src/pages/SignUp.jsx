@@ -1,14 +1,11 @@
 import { useState } from 'react'
-import { Button, FormControl, InputLabel, Box, Typography, TextField } from "@mui/material";
+import { Button, Box, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { FormLabel } from 'react-bootstrap';
-import { Container, fontSize } from '@mui/system';
+import { Container } from '@mui/system';
 import { Navbar } from '../components/Navbar';
-import { MaterialUISwitch } from "../components/Switch";
-import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
-export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
+export default function SignUpPage({ authState, setAuthState, setDarkMode }) {
     const navigate = useNavigate();
     const [signUpState, setSignUpState] = useState({
         firstname: '',
@@ -19,12 +16,12 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
         password: '',
         confirm: ''
     })
-    
+
     const handleChange = (event) => {
-        const {name, value} = event.target 
+        const { name, value } = event.target
         setSignUpState((prevState) => ({
             ...prevState,
-            [name] : value
+            [name]: value
         }))
     }
 
@@ -38,7 +35,7 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
 
     return (
         <>
-            <Navbar setDarkMode={setDarkMode} authState={authState}/>
+            <Navbar setDarkMode={setDarkMode} authState={authState} />
             <Container
                 sx={{
                     display: 'flex',
@@ -47,9 +44,9 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                     height: '100%',
                     width: '100%',
                     mt: 10,
-                  }}
+                }}
             >
-                <Box 
+                <Box
                     component='form'
                     onSubmit={onSubmit}
                     sx={{
@@ -68,8 +65,132 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                     >
                         Sign Up
                     </Typography>
+                    <Box sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
+                        <TextField
+                            label="First Name"
+                            name="firstname"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+                        <TextField
+                            label="Last Name"
+                            name="lastname"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+
+                        <TextField
+                            label="Email"
+                            name="email"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+                        <TextField
+                            label="Phone Number"
+                            name="number"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+                        <TextField
+                            label="Username"
+                            name="username"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+                        <TextField
+                            label="Password"
+                            name="password"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            type="password"
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+                        <TextField
+                            label="Confirm Password"
+                            name="confirm"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            required
+                            type="password"
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: 10,
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    borderRadius: 10,
+                                },
+                            }}
+                        />
+                    </Box>
                     <Grid2
-                        container 
+                        container
                         spacing={5}
                         sx={{
                             display: 'flex',
@@ -80,165 +201,6 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                         }}
                     >
                         <Grid2 item>
-                            <TextField
-                                label="First Name"
-                                name="firstname"
-                                variant="outlined"
-                                fullWidth
-                                margin="normal"
-                                required
-                                onChange={handleChange}
-                                sx={{
-                                    width: '100%',
-                                    '& .MuiOutlinedInput-root': {
-                                    borderRadius: 10,
-                                    },
-                                    '& .MuiOutlinedInput-input': {
-                                    borderRadius: 10,
-                                    },
-                                }}
-                            />
-                        </Grid2>
-                        <Grid2 item>
-                            <TextField
-                                label="Last Name"
-                                name="lastname"
-                                variant="outlined"
-                                fullWidth
-                                margin="normal"
-                                required
-                                onChange={handleChange}
-                                sx={{
-                                    width: '100%',
-                                    '& .MuiOutlinedInput-root': {
-                                    borderRadius: 10,
-                                    },
-                                    '& .MuiOutlinedInput-input': {
-                                    borderRadius: 10,
-                                    },
-                                }}
-                            />
-                        </Grid2>
-                    </Grid2>
-                    <Grid2
-                        container 
-                        spacing={5}
-                        sx={{
-                            display: 'flex',
-                            width: "100%",
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Grid2 item>
-                            <TextField
-                                label="Email"
-                                name="email"
-                                variant="outlined"
-                                fullWidth
-                                margin="normal"
-                                required
-                                onChange={handleChange}
-                                sx={{
-                                    width: '100%',
-                                    '& .MuiOutlinedInput-root': {
-                                    borderRadius: 10,
-                                    },
-                                    '& .MuiOutlinedInput-input': {
-                                    borderRadius: 10,
-                                    },
-                                }}
-                            />
-                        </Grid2>
-                        <Grid2 item>
-                            <TextField
-                                label="Phone Number"
-                                name="number"
-                                variant="outlined"
-                                fullWidth
-                                margin="normal"
-                                required
-                                onChange={handleChange}
-                                sx={{
-                                    width: '100%',
-                                    '& .MuiOutlinedInput-root': {
-                                        borderRadius: 10,
-                                    },
-                                    '& .MuiOutlinedInput-input': {
-                                        borderRadius: 10,
-                                    },
-                                }}
-                            />
-                        </Grid2>
-                    </Grid2>
-                    <TextField
-                        label="Username"
-                        name="username"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        onChange={handleChange}
-                        sx={{
-                            width: '70%',
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: 10,
-                            },
-                            '& .MuiOutlinedInput-input': {
-                              borderRadius: 10,
-                            },
-                          }}
-                    />
-                    <TextField
-                        label="Password"
-                        name="password"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        type="password"
-                        onChange={handleChange}
-                        sx={{
-                            width: '70%',
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: 10,
-                            },
-                            '& .MuiOutlinedInput-input': {
-                              borderRadius: 10,
-                            },
-                          }}
-                    />
-                    <TextField
-                        label="Confirm Password"
-                        name="confirm"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        type="password"
-                        onChange={handleChange}
-                        sx={{
-                            width: '70%',
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: 10,
-                            },
-                            '& .MuiOutlinedInput-input': {
-                              borderRadius: 10,
-                            },
-                          }}
-                    />
-                    <Grid2 
-                        container 
-                        spacing={5}
-                        sx={{
-                            display: 'flex',
-                            width: "100%",
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            mt: 1
-                        }}
-                    >
-                       <Grid2 item>
                             <Button
                                 variant="contained"
                                 sx={{
@@ -249,8 +211,8 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                             >
                                 Sign Up
                             </Button>
-                       </Grid2>
-                       <Grid2>
+                        </Grid2>
+                        <Grid2>
                             <Button
                                 variant="contained"
                                 sx={{
@@ -262,7 +224,7 @@ export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
                             >
                                 Login
                             </Button>
-                       </Grid2>
+                        </Grid2>
                     </Grid2>
                 </Box>
             </Container>
