@@ -61,7 +61,7 @@ export const Navbar = ({ setDarkMode, authState }) => {
               DarkMode
             </Typography>
 
-            <NavbarMenu authState={authState} />
+            <NavbarMenu authState={authState} setAuthState={setAuthState}/>
 
           </Box>
         </Toolbar>
