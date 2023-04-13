@@ -8,7 +8,7 @@ import { MaterialUISwitch } from "../components/Switch";
 import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
-export default function SignUpPage({ authState, setAuthState }) {
+export default function SignUpPage({ authState, setAuthState, setDarkMode}) {
     const navigate = useNavigate();
     const [signUpState, setSignUpState] = useState({
         firstname: '',
@@ -19,7 +19,7 @@ export default function SignUpPage({ authState, setAuthState }) {
         password: '',
         confirm: ''
     })
-
+    
     const handleChange = (event) => {
         const {name, value} = event.target 
         setSignUpState((prevState) => ({
@@ -38,7 +38,7 @@ export default function SignUpPage({ authState, setAuthState }) {
 
     return (
         <>
-            <Navbar />
+            <Navbar setDarkMode={setDarkMode} authState={authState}/>
             <Container
                 sx={{
                     display: 'flex',

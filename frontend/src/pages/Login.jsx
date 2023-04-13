@@ -8,7 +8,7 @@ import { MaterialUISwitch } from "../components/Switch";
 import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
-export default function Login({ authState, setAuthState }) {
+export default function Login({ authState, setAuthState, setDarkMode}) {
     const navigate = useNavigate();
     const [loginState, setLoginState] = useState({
         username: '',
@@ -33,7 +33,7 @@ export default function Login({ authState, setAuthState }) {
 
     return (
         <>
-            <Navbar />
+            <Navbar setDarkMode={setDarkMode} authState={authState}/>
             <Container
                 sx={{
                     display: 'flex',
