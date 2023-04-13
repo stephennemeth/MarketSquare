@@ -135,6 +135,19 @@ export default function Login({ authState, setAuthState, setDarkMode}) {
                                 Sign Up
                             </Button>
                        </Grid2>
+                       <Grid2>
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    fontSize: 16,
+                                    borderRadius: "50px",
+                                    width: '120px'
+                                }}
+                                onClick={() => setAuthState(true)}
+                            >
+                                Bypass Login
+                            </Button>
+                       </Grid2>
                     </Grid2>
                 </Box>
             </Container>
