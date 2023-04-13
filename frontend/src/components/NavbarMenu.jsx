@@ -5,6 +5,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 export function NavbarMenu({ authState }) {
     const navigate = useNavigate();
 
+    // TODO Implement real logout behavior
+    const logoutHandler = () => {
+        navigate('/login')
+    }
+
     let buttons;
 
     if (authState) {
@@ -16,12 +21,12 @@ export function NavbarMenu({ authState }) {
                 onClick={() => navigate('/item/create')}>
                 Create Item
             </Button>),
-            (<Button color="inherit" variant="outlined" onClick={() => navigate('/login')}>Logout</Button>)
+            (<Button color="inherit" variant="outlined" onClick={() => navigate('/login')}>Logout</Button>) 
         ]
     } else {
         buttons = [
             (<Button color="inherit" variant="outlined" onClick={() => navigate('/signup')}>Signup</Button>),
-            (<Button color="inherit" variant="outlined" onClick={() => navigate('/login')}>Login</Button>)
+            (<Button color="inherit" variant="outlined" onClick={logoutHandler}>Login</Button>)
         ]
     }
 
