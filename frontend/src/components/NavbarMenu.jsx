@@ -17,11 +17,24 @@ const style = {
     p: 4,
   };
 
-export function NavbarMenu({myItems, setPush, authState }) {
+export function NavbarMenu({myItems, setPush, authState, setAuthState }) {
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    // TODO Implement real logout behavior
+    const logoutHandler = () => {
+        if (!authState) return
+        setAuthState(false)
+        navigate('/login')
+    }
+
+    const bypassLogin = () => {
+        setAuthState(true)
+        navigate("/")
+    }
+
 
     let buttons;
 
@@ -33,54 +46,55 @@ export function NavbarMenu({myItems, setPush, authState }) {
                 startIcon={<AddShoppingCartIcon />}
                 onClick={handleOpen}>
                 Create Item
-            </Button>),(<Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description" 
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Create new item:
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          </Typography>
-          <TextField id="item-name" label="Item Name" variant="outlined" sx={{ mt: 2 }}/>
-          <TextField id="item-price" label="Price" variant="outlined" sx={{ mt: 2 }}/>
-          <TextField id="item-description" label="Description" variant="outlined" sx={{ mt: 2 }}/>
-          <TextField id="item-condition" label="Condition" variant="outlined"  sx={{ mt: 2 }}/>
-          <TextField id="item-owner" label="Current Owner" variant="outlined" sx={{ mt: 2 }}/>
-          <TextField id="item-image-url" label="Image url" variant="outlined"  sx={{ mt: 2 }}/>
-          <Button onClick={() =>{
-            setPush(
-                
-                myItems.push(
-                    {
-                        id: 69,
-                        slug: "newItem999",
-                        name: document.getElementById('item-name').value,
-                        price: document.getElementById('item-price').value,
-                        description: document.getElementById('item-description').value,
-                        condtition: document.getElementById('item-condition').value,
-                        owner: document.getElementById('item-owner').value,
-                        thumbnail_url: document.getElementById('item-image-url').value,
-                    }
-
-                )
-                
-            );
-            setOpen(false);
-                }
-            }>Submit</Button>
-        </Box>
-      </Modal>),
-
-            (<Button color="inherit" variant="outlined" onClick={() => navigate('/login')}>Logout</Button>)
+            </Button>),
+            (<Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description" 
+              >
+                <Box sx={style}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Create new item:
+                  </Typography>
+                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  </Typography>
+                  <TextField id="item-name" label="Item Name" variant="outlined" sx={{ mt: 2 }}/>
+                  <TextField id="item-price" label="Price" variant="outlined" sx={{ mt: 2 }}/>
+                  <TextField id="item-description" label="Description" variant="outlined" sx={{ mt: 2 }}/>
+                  <TextField id="item-condition" label="Condition" variant="outlined"  sx={{ mt: 2 }}/>
+                  <TextField id="item-owner" label="Current Owner" variant="outlined" sx={{ mt: 2 }}/>
+                  <TextField id="item-image-url" label="Image url" variant="outlined"  sx={{ mt: 2 }}/>
+                  <Button onClick={() =>{
+                    setPush(
+                        
+                        myItems.push(
+                            {
+                                id: 69,
+                                slug: "newItem999",
+                                name: document.getElementById('item-name').value,
+                                price: document.getElementById('item-price').value,
+                                description: document.getElementById('item-description').value,
+                                condtition: document.getElementById('item-condition').value,
+                                owner: document.getElementById('item-owner').value,
+                                thumbnail_url: document.getElementById('item-image-url').value,
+                            }
+        
+                        )
+                        
+                    );
+                    setOpen(false);
+                        }
+                    }>Submit</Button>
+                </Box>
+              </Modal>),
+            (<Button color="inherit" variant="outlined" onClick={logoutHandler}>Logout</Button>) 
         ]
     } else {
         buttons = [
             (<Button color="inherit" variant="outlined" onClick={() => navigate('/signup')}>Signup</Button>),
-            (<Button color="inherit" variant="outlined" onClick={() => navigate('/login')}>Login</Button>)
+            (<Button color="inherit" variant="outlined" onClick={() => navigate("/login")}>Login</Button>),
+            (<Button color="inherit" variant="outlined" onClick={bypassLogin}>Bypass Login</Button>)
         ]
     }
 

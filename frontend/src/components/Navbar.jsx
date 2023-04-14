@@ -12,10 +12,9 @@ import { useNavigate } from "react-router-dom";
 
 import { MaterialUISwitch } from "./Switch";
 import { NavbarMenu } from "./NavbarMenu";
+import '../css/navbar.css'
 import { useState } from "react";
-
-export const Navbar = ({myItems, setPush, setDarkMode, authState }) => {
-  
+export const Navbar = ({ myItems, setPush, setDarkMode, authState, setAuthState }) => {
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -42,6 +41,12 @@ export const Navbar = ({myItems, setPush, setDarkMode, authState }) => {
             src="logo-long.png"
             onClick={() => navigate("/")}
           />
+          {authState &&
+              <Typography className="greetings">
+                Hello, User
+              </Typography>
+          }
+          
           <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
             <FormGroup sx={{ display: { xs: "none", md: "flex" } }}>
               <FormControlLabel
@@ -64,7 +69,7 @@ export const Navbar = ({myItems, setPush, setDarkMode, authState }) => {
               DarkMode
             </Typography>
 
-            <NavbarMenu myItems = {myItems} setPush = {setPush} authState={authState} />
+            <NavbarMenu myItems = {myItems} setPush = {setPush} authState={authState} setAuthState={setAuthState}/>
 
           </Box>
         </Toolbar>
