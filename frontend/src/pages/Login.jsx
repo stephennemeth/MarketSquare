@@ -59,7 +59,6 @@ export default function Login({ authState, setAuthState, setDarkMode}) {
                             Sign Up
                         </Button>
                     </Grid2>
-                    <Button color="inherit" variant="outlined" onClick={() => setAuthState(!authState)}>Debug: Toggle authState</Button>
                 </Container>
             </form>
         </>

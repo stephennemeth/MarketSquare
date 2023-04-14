@@ -1,12 +1,14 @@
 import * as React from 'react';
 import {Card, IconButton, CardActionArea, CardContent, CardMedia,} from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
 
 const style = {
   position: 'absolute',
@@ -20,15 +22,22 @@ const style = {
   p: 4,
 };
 
-export const ShopItemGalleryCard = ({ item, authState }) => {
+export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsData, setItemsData, item, authState }) => {
   const navigate = useNavigate()
   const viewItem = () => navigate(`/item/view/${item.slug}`)
   const editItem = () => navigate(`/item/edit/${item.slug}`)
+  function  getIndex(email) {
+    return ITEMS.findIndex(obj => obj.email === email);
+  }
   
+  // const myIDindex = ITEMS.findIndex((thing) => thing.id === item.id);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const handleDelete = () => {
+    setITEMS(itemsData => {return itemsData.filter((thing) => thing.id !== item.id)});
+    handleClose()
+  }
   const editItemButton = authState ? (
     
     <div>
@@ -67,7 +76,12 @@ export const ShopItemGalleryCard = ({ item, authState }) => {
            handleClose()
         }
           
-          }>Submit</Button>
+          } sx = {{mt: 2, ml: 2, mr: 7}}>[Submit]</Button>
+        <Button onClick = {handleDelete}>        
+          <IconButton aria-label="Delete" sx={{ marginRight: '5%', marginTop: '30%' , marginBottom:'5%'}}>
+            <DeleteIcon />
+          </IconButton>
+          </Button>
         </Box>
       </Modal>
     </div>
