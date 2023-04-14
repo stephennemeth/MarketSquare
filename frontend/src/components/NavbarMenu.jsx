@@ -51,8 +51,9 @@ export function NavbarMenu({myItems, setPush, authState }) {
           <TextField id="item-condition" label="Condition" variant="outlined"  sx={{ mt: 2 }}/>
           <TextField id="item-owner" label="Current Owner" variant="outlined" sx={{ mt: 2 }}/>
           <TextField id="item-image-url" label="Image url" variant="outlined"  sx={{ mt: 2 }}/>
-          <Button onClick={() =>
+          <Button onClick={() =>{
             setPush(
+                
                 myItems.push(
                     {
                         id: 69,
@@ -66,7 +67,10 @@ export function NavbarMenu({myItems, setPush, authState }) {
                     }
 
                 )
-            )
+                
+            );
+            setOpen(false);
+                }
             }>Submit</Button>
         </Box>
       </Modal>),

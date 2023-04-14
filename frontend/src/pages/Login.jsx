@@ -136,7 +136,9 @@ export default function Login({ authState, setAuthState }) {
                             </Button>
                        </Grid2>
                     </Grid2>
+                    <Button color="inherit" variant="outlined" onClick={() => setAuthState(!authState)}>Debug: Toggle authState</Button>
                 </Box>
+                
             </Container>
         </>
     );

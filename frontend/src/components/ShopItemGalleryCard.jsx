@@ -71,6 +71,7 @@ export const ShopItemGalleryCard = ({ item, authState }) => {
         </Box>
       </Modal>
     </div>
+    
   ) : null
 
   return (
