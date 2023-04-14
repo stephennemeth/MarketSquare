@@ -7,9 +7,11 @@ import { Navbar } from '../components/Navbar';
 import { MaterialUISwitch } from "../components/Switch";
 import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
-
+import '../css/login.css'
 export default function Login({ authState, setAuthState, setDarkMode}) {
     const navigate = useNavigate();
+    const [usernameError, setUsernameError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
     const [loginState, setLoginState] = useState({
         username: '',
         password: ''
@@ -23,8 +25,10 @@ export default function Login({ authState, setAuthState, setDarkMode}) {
         }))
     }
 
-    const onSubmit = async () => {
-        return
+    const onSubmit = async (event) => {
+        event.preventDefault()
+        setAuthState(true)
+        navigate('/')
     }
 
     const goToSignUp = () => {
@@ -33,124 +37,30 @@ export default function Login({ authState, setAuthState, setDarkMode}) {
 
     return (
         <>
-            <Navbar setDarkMode={setDarkMode} authState={authState}/>
-            <Container
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '100%',
-                    width: '100%',
-                    mt: 10,
-                  }}
-            >
-                <Box 
-                    component='form'
-                    onSubmit={onSubmit}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        width: '100%',
-                        maxWidth: '50%',
-                        border: '2px solid #3f51b5',
-                        borderRadius: 5,
-                        padding: 5,
-                    }}
-                >
-                    <Typography
-                        variant="h4"
-                    >
+            <Navbar setDarkMode={setDarkMode} authState={authState} setAuthState={setAuthState} />
+            <form className='login-form' onSubmit={onSubmit}>
+                <Container className='login-form-container'>
+                    <Typography variant='h4'>
                         Login
                     </Typography>
-                    <TextField
-                        label="Username"
-                        name="username"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        onChange={handleChange}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: 10,
-                            },
-                            '& .MuiOutlinedInput-input': {
-                              borderRadius: 10,
-                            },
-                          }}
-                    />
-
-                    <TextField
-                        label="Password"
-                        name="password"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        required
-                        type="password"
-                        onChange={handleChange}
-                        sx={{
-                            '& .MuiOutlinedInput-root': {
-                              borderRadius: 10,
-                            },
-                            '& .MuiOutlinedInput-input': {
-                              borderRadius: 10,
-                            },
-                          }}
-                    />
-                    <Grid2 
-                        container 
-                        spacing={5}
-                        sx={{
-                            display: 'flex',
-                            width: "100%",
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            mt: 1
-                        }}
-                    >
-                       <Grid2 item>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    fontSize: 16,
-                                    borderRadius: '50px',
-                                    width: '120px'
-                                }}
-                            >
-                                Login
-                            </Button>
-                       </Grid2>
-                       <Grid2>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    fontSize: 16,
-                                    borderRadius: "50px",
-                                    width: '120px'
-                                }}
-                                onClick={goToSignUp}
-                            >
-                                Sign Up
-                            </Button>
-                       </Grid2>
-                       <Grid2>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    fontSize: 16,
-                                    borderRadius: "50px",
-                                    width: '120px'
-                                }}
-                                onClick={() => setAuthState(true)}
-                            >
-                                Bypass Login
-                            </Button>
-                       </Grid2>
+                    <Grid2 container spacing={2} className='text-field-container'>
+                        <Grid2 item sx={12} sm={12}>
+                            <TextField variant='outlined' className='text-field' type='text' name='username' label='Username' onChange={handleChange} error={usernameError} required />
+                        </Grid2>
+                        <Grid2 item sx={12} sm={12}>
+                            <TextField variant='outlined'className='text-field' type='password' name='confirm' label='Password' onChange={handleChange} error={passwordError} required />
+                        </Grid2>
                     </Grid2>
-                </Box>
-            </Container>
+                    <Grid2 container className='sign-up-form-footer' spacing={1}>
+                        <Button className="login-form-submit-button" type='submit' variant='contained'>
+                            Login
+                        </Button>
+                        <Button className="login-form-submit-button" variant='contained' onClick={goToSignUp}>
+                            Sign Up
+                        </Button>
+                    </Grid2>
+                </Container>
+            </form>
         </>
     );
 }
