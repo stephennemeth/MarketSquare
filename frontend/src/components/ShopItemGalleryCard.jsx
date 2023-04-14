@@ -30,9 +30,6 @@ export const ShopItemGalleryCard = ({ item, authState }) => {
   const handleClose = () => setOpen(false);
 
   const editItemButton = authState ? (
-    // <IconButton aria-label="Edit" sx={{ marginRight: '5%', marginTop: '5%' , marginBottom:'5%'}} onClick={editItem}>
-    //   <EditIcon />
-    // </IconButton>
     
     <div>
       <Button onClick={handleOpen}>
@@ -70,7 +67,7 @@ export const ShopItemGalleryCard = ({ item, authState }) => {
            handleClose()
         }
           
-          }>Edit</Button>
+          }>Submit</Button>
         </Box>
       </Modal>
     </div>

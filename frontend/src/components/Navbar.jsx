@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   Container,
   Typography,
   FormGroup,
@@ -11,8 +12,10 @@ import { useNavigate } from "react-router-dom";
 
 import { MaterialUISwitch } from "./Switch";
 import { NavbarMenu } from "./NavbarMenu";
+import { useState } from "react";
 
-export const Navbar = ({ setDarkMode, authState }) => {
+export const Navbar = ({myItems, setPush, setDarkMode, authState }) => {
+  
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -61,7 +64,7 @@ export const Navbar = ({ setDarkMode, authState }) => {
               DarkMode
             </Typography>
 
-            <NavbarMenu authState={authState} />
+            <NavbarMenu myItems = {myItems} setPush = {setPush} authState={authState} />
 
           </Box>
         </Toolbar>

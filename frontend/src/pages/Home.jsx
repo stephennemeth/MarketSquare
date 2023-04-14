@@ -60,11 +60,12 @@ const ITEMS = [
 
 ];
 
-export default function Home({authState, setDarkMode}) {
 
+export default function Home({authState, setDarkMode}) {
+  let   [myItems, setPush] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [itemsData, setItemsData] = useState([]);
-
+  myItems = ITEMS;
   const receiveItems = (receivedItems) => {
     setItemsData(receivedItems);
     setIsLoading(false);
@@ -80,7 +81,7 @@ export default function Home({authState, setDarkMode}) {
     <LoadingSkeleton />
   ) : (
     <>
-      <Navbar setDarkMode={setDarkMode} authState={authState} />
+      <Navbar myItems = {myItems} setPush = {setPush} setDarkMode={setDarkMode} authState={authState} />
       <main>
         <Container maxWidth={"lg"} sx={{ marginTop: 3 }}>
           <Grid container spacing={2}>
