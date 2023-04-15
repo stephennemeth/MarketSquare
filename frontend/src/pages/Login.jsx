@@ -1,11 +1,8 @@
 import { useState } from 'react'
-import { Button, FormControl, InputLabel, Box, Typography, TextField } from "@mui/material";
+import { Button, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { FormLabel } from 'react-bootstrap';
-import { Container, fontSize } from '@mui/system';
+import { Container } from '@mui/system';
 import { Navbar } from '../components/Navbar';
-import { MaterialUISwitch } from "../components/Switch";
-import { NavbarMenu } from "../components/NavbarMenu";
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import '../css/login.css'
 export default function Login({ authState, setAuthState, setDarkMode}) {

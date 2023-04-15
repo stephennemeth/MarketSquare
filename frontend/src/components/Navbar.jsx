@@ -9,12 +9,13 @@ import {
   Toolbar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
 import { MaterialUISwitch } from "./Switch";
 import { NavbarMenu } from "./NavbarMenu";
+
 import '../css/navbar.css'
 import { useState } from "react";
 export const Navbar = ({ myItems, setPush, setDarkMode, authState, setAuthState }) => {
+
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
