@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   Container,
   Typography,
   FormGroup,
@@ -12,8 +13,9 @@ import { MaterialUISwitch } from "./Switch";
 import { NavbarMenu } from "./NavbarMenu";
 
 import '../css/navbar.css'
+import { useState } from "react";
+export const Navbar = ({ myItems, setPush, setDarkMode, authState, setAuthState }) => {
 
-export const Navbar = ({ setDarkMode, authState, setAuthState }) => {
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -68,7 +70,7 @@ export const Navbar = ({ setDarkMode, authState, setAuthState }) => {
               DarkMode
             </Typography>
 
-            <NavbarMenu authState={authState} setAuthState={setAuthState}/>
+            <NavbarMenu myItems = {myItems} setPush = {setPush} authState={authState} setAuthState={setAuthState}/>
 
           </Box>
         </Toolbar>
