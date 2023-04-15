@@ -13,7 +13,7 @@ import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 import '../css/shopitemgallerycard.css'
 
-import {Card as CustomCard} from './Card'
+import {Card} from './Card'
 
 const style = {
   position: 'absolute',
@@ -83,14 +83,10 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsDat
             item.condtition = document.getElementById('edit-condition').value
             item.owner = document.getElementById('edit-owner').value
             item.thumbnail_url = document.getElementById('edit-image-url').value
-
             handleClose()
-          }
-
-           handleClose()
-        }
+          }}
           
-          } sx = {{mt: 2, ml: 2, mr: 7}}>[Submit]</Button>
+          sx = {{mt: 2, ml: 2, mr: 7}}>[Submit]</Button>
         <Button onClick = {handleDelete}>        
           <IconButton aria-label="Delete" sx={{ marginRight: '5%', marginTop: '30%' , marginBottom:'5%'}}>
             <DeleteIcon />
