@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 const style = {
   position: 'absolute',
@@ -34,6 +35,12 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsDat
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [openChild, setChildOpen] = React.useState(false);
+  const handleChildOpen = () => setChildOpen(true);
+  const handleChildClose = () => setChildOpen(false);
+
+
   const handleDelete = () => {
     setITEMS(itemsData => {return itemsData.filter((thing) => thing.id !== item.id)});
     handleClose()
@@ -47,7 +54,7 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsDat
         </IconButton>
 
       </Button>
-      <Modal
+      <Modal className='edit-modal'
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -84,14 +91,30 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsDat
           </Button>
         </Box>
       </Modal>
+
+      <Modal className='info-modal'
+        open={openChild}
+        onClose={handleChildClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description" 
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Info: {item.name}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </Typography>
+        </Box>
+      </Modal>
+
     </div>
     
   ) : null
 
   return (
     <Card>
-      <CardActionArea onClick={viewItem}>
-        <CardMedia onClick={viewItem}
+      <CardActionArea onClick={handleChildOpen}>
+        <CardMedia onClick={handleChildOpen}
           sx={{ objectFit: 'cover' }}
           component="img"
           height="244"
@@ -101,7 +124,7 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsDat
         />
       </CardActionArea>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <CardActionArea onClick={viewItem}>
+        <CardActionArea onClick={handleChildOpen}>
           <CardContent>
             <Typography>
               {item.name}
@@ -113,6 +136,43 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, myItems, setPush, itemsDat
         </CardActionArea>
         {editItemButton}
       </Box>
+      <Modal className='info-modal-logged-out'
+        open={openChild}
+        onClose={handleChildClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description" 
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h4" component="h2">
+            Info: {item.name}
+          </Typography>
+          <Grid2 container spacing={2} className='text-field-container'>
+                    <Grid2 item sx={12} sm={6}>
+                        <p>Owner:</p> {item.owner}
+                    </Grid2>
+                    <Grid2 item sx={12} sm={6}>
+                        <p>Description:</p>
+                        {item.description}
+                    </Grid2>
+                    <Grid2 item sx={12} sm={6}>
+                    <p>Price:</p>
+                      ${item.price}
+                    </Grid2>                        
+                    <Grid2 item sx={12} sm={6}>
+                    <p>Condition:</p>
+                    {item.condtition}
+                    </Grid2>
+                    <CardMedia
+                      sx={{ objectFit: 'contain' }}
+                      component="img"
+                      height="244"
+                      image={item.thumbnail_url}
+                      alt={"Thumbnail of " + item.name}
+                      loading='lazy'
+                    />
+                </Grid2>
+        </Box>
+      </Modal>
     </Card>
   )
 }
