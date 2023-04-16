@@ -48,7 +48,7 @@ export const ShopItemGalleryCard = ({ ITEMS, setITEMS, item, authState }) => {
             loading='lazy'
           />
         </CardActionArea>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box className='itemcard-content'>
           <CardActionArea onClick={handleChildOpen}>
 
             <CardContent>

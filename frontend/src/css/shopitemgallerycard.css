@@ -14,3 +14,9 @@
     font-size: 1.1rem;
 }
 
+.itemcard-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
