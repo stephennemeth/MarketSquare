@@ -12,6 +12,16 @@ import '../css/edititembutton.css'
 
 
 export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handleClose, handleDelete, item, openChild }) {
+    const handleSubmit = () => {
+        item.name = document.getElementById('edit-item').value
+        item.price = document.getElementById('edit-price').value
+        item.description = document.getElementById('edit-description').value
+        item.condtition = document.getElementById('edit-condition').value
+        item.owner = document.getElementById('edit-owner').value
+        item.thumbnail_url = document.getElementById('edit-image-url').value
+        handleClose()
+    }
+
     const editItemBoxStyle = {
         position: 'absolute',
         top: '50%',
@@ -25,13 +35,8 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
     };
 
     return (
-        <div>
-            <Button onClick={handleOpen}>
-                <IconButton aria-label="Edit" sx={{ marginRight: '5%', marginTop: '5%', marginBottom: '5%' }}>
-                    <EditIcon />
-                </IconButton>
-
-            </Button>
+        <IconButton onClick={handleOpen} aria-label="Edit" sx={{ marginRight: '5%', marginTop: '5%', marginBottom: '5%' }}>
+            <EditIcon />
             <Modal className='edit-modal'
                 open={parentOpen}
                 onClose={handleClose}
@@ -50,16 +55,8 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
                     <TextField id="edit-condition" label="Condition" variant="outlined" defaultValue={item.condtition} sx={{ mt: 2 }} />
                     <TextField id="edit-owner" label="Current Owner" variant="outlined" defaultValue={item.owner} sx={{ mt: 2 }} />
                     <TextField id="edit-image-url" label="Image url" variant="outlined" defaultValue={item.thumbnail_url} sx={{ mt: 2 }} />
-                    <br/>
-                    <Button onClick={() => {
-                        item.name = document.getElementById('edit-item').value
-                        item.price = document.getElementById('edit-price').value
-                        item.description = document.getElementById('edit-description').value
-                        item.condtition = document.getElementById('edit-condition').value
-                        item.owner = document.getElementById('edit-owner').value
-                        item.thumbnail_url = document.getElementById('edit-image-url').value
-                        handleClose()
-                    }}
+                    <br />
+                    <Button onClick={handleSubmit}
                         className='edit-item-submit-button'
                         variant='outlined'
                     >
@@ -70,23 +67,7 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
                     </IconButton>
                 </Box>
             </Modal>
-
-            <Modal className='info-modal'
-                open={openChild}
-                onClose={handleChildClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box className="edit-form-field-box">
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Info: {item.name}
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    </Typography>
-                </Box>
-            </Modal>
-
-        </div>
+        </IconButton>
 
     )
 
