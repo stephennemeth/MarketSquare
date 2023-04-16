@@ -82,8 +82,8 @@ export function NavbarMenu({myItems, setPush, authState, setAuthState }) {
                     <TextField id="item-condition" label="Condition" variant="outlined"  sx={{ mt: 2 }}/>
                     <TextField id="item-owner" label="Current Owner" variant="outlined" sx={{ mt: 2 }}/>
                     <TextField id="item-image-url" defaultValue="https://princetoncryo.com/media/catalog/category/default_product.jpg" label="Image url" variant="outlined"  sx={{ mt: 2 }}/>
-                    <Button onClick={() =>{itemPush()}
-                        }>[Submit]</Button>
+                    <br/>
+                    <Button onClick={() =>{itemPush()}} sx={{mt: 3}} variant='outlined'>Submit</Button>
                     </form> 
                 </Box>
               </Modal>),
