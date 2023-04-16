@@ -52,7 +52,7 @@ export const ShopItemGalleryCard = ({ITEMS, setITEMS, item, authState }) => {
     <>
     <Card>
       <CardActionArea onClick={handleChildOpen}>
-        <CardMedia onClick={handleChildOpen}
+        <CardMedia
           sx={{ objectFit: 'cover' }}
 
           component="img"

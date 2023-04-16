@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  Button,
   Container,
   Typography,
   FormGroup,
@@ -13,7 +12,6 @@ import { MaterialUISwitch } from "./Switch";
 import { NavbarMenu } from "./NavbarMenu";
 
 import '../css/navbar.css'
-import { useState } from "react";
 export const Navbar = ({ myItems, setPush, setDarkMode, authState, setAuthState }) => {
 
   const navigate = useNavigate();

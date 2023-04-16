@@ -1,9 +1,4 @@
-import { useState } from 'react'
-import { Button, Typography, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { Container} from '@mui/system';
 import { Navbar } from '../components/Navbar';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 import '../css/signup.css'
 import SignUpForm from '../components/SignUpForm';
