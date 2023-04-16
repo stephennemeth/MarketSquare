@@ -37,7 +37,7 @@ export const ShopItemGalleryCard = ({ ITEMS, setITEMS, item, authState }) => {
 
   return (
     <>
-      <Card>
+      <Card className="card-wrapper">
         <CardActionArea onClick={handleChildOpen}>
           <CardMedia
             sx={{ objectFit: 'cover' }}

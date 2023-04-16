@@ -35,8 +35,10 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
     };
 
     return (
-        <IconButton onClick={handleOpen} aria-label="Edit" sx={{ marginRight: '5%', marginTop: '5%', marginBottom: '5%' }}>
-            <EditIcon />
+        <div className="edit-button-wrapper">
+            <IconButton onClick={handleOpen} aria-label="Edit">
+                <EditIcon />
+            </IconButton>
             <Modal className='edit-modal'
                 open={parentOpen}
                 onClose={handleClose}
@@ -57,32 +59,17 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
                     <TextField id="edit-image-url" label="Image url" variant="outlined" defaultValue={item.thumbnail_url} sx={{ mt: 2 }} />
                     <br />
                     <Button onClick={handleSubmit}
-                        className='edit-item-button'
+                        className='edit-item-modal-button'
                         variant='outlined'
                     >
                         Submit
                     </Button>
-                    <IconButton aria-label="Delete" className='edit-item-button' onClick={handleDelete}>
+                    <IconButton aria-label="Delete" className='edit-item-modal-button' onClick={handleDelete}>
                         <DeleteIcon />
                     </IconButton>
                 </Box>
             </Modal>
-
-            <Modal className='info-modal'
-                open={openChild}
-                onClose={handleChildClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box className="edit-form-field-box">
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Info: {item.name}
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    </Typography>
-                </Box>
-            </Modal>
-        </IconButton>
+        </div>
 
     )
 

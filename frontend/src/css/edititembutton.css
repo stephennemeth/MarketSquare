@@ -1,3 +1,6 @@
-.edit-item-button {
+.edit-item-modal-button {
     margin: 3% 5% 1% 0%;
+}
+.edit-button-wrapper {
+    margin-right: 5%;
 }

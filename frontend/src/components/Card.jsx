@@ -3,10 +3,8 @@ import { Card as MUICard } from '@mui/material'
 
 export function Card(props) {
     return (
-        <div className='general-card-shadow'>
-            <MUICard>
-                {props.children}
-            </MUICard>
-        </div>
+        <MUICard className={'general-card-shadow' + props.className? props.className : ""}>
+            {props.children}
+        </MUICard>
     )
 }
