@@ -26,7 +26,7 @@ mongoose.connect(conn_str, {
 })
 .then(() => {
     app.listen(port)
-    console.log('MongoDB Connection Suceeded...')
+    console.log('MongoDB Connection Suceeded. Listening on port ' + port + '.')
 })
 .catch(err => {
     console.log(`Error in DB connection ${err}`);
