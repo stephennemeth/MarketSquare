@@ -50,25 +50,25 @@ const SignUpForm = ({authState, setAuthState, setDarkMode}) => {
                 </Typography>
                 <Grid2 container spacing={2} className='text-field-container'>
                     <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='firstName' label='First Name' onChange={handleChange} required />
+                        <TextField variant='outlined' className='text-field' name='firstName' label='First Name' onChange={handleChange} required={true}/>
                     </Grid2>
                     <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='lastName' label='Last Name' onChange={handleChange} required />
+                        <TextField variant='outlined' className='text-field' name='lastName' label='Last Name' onChange={handleChange} required={true} />
                     </Grid2>
                     <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='email' label='Email Address' onChange={handleChange} required />
+                        <TextField variant='outlined' className='text-field' name='email' label='Email Address' onChange={handleChange} required={true} />
                     </Grid2>                        
                     <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='number' label='Phone Number' onChange={handleChange} required />
+                        <TextField variant='outlined' className='text-field' name='number' label='Phone Number' onChange={handleChange} required={true} />
                     </Grid2>
                     <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' name='username' label='Username' onChange={handleChange} required />
+                        <TextField variant='outlined' className='text-field' name='username' label='Username' onChange={handleChange} required={true} />
                     </Grid2>
                     <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' type='password' name='password' label='Password' onChange={handleChange} error={passwordError} required />
+                        <TextField variant='outlined' className='text-field' type='password' name='password' label='Password' onChange={handleChange} error={passwordError} required={true} />
                     </Grid2>
                     <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' type='password' name='confirm' label='Confirm Password' onChange={handleChange} error={passwordError} required />
+                        <TextField variant='outlined' className='text-field' type='password' name='confirm' label='Confirm Password' onChange={handleChange} error={passwordError} required={true} />
                     </Grid2>
                 </Grid2>
                 <Grid2 container className='sign-up-form-footer'>

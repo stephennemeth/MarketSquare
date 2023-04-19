@@ -42,10 +42,10 @@ const LoginForm = ({authState, setAuthState, setDarkMode}) => {
                 </Typography>
                 <Grid2 container spacing={2} className='text-field-container'>
                     <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' type='text' name='username' label='Username' onChange={handleChange} error={usernameError} required />
+                        <TextField variant='outlined' className='text-field' type='text' name='username' label='Username' onChange={handleChange} error={usernameError} required={true}/>
                     </Grid2>
                     <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined'className='text-field' type='password' name='confirm' label='Password' onChange={handleChange} error={passwordError} required />
+                        <TextField variant='outlined'className='text-field' type='password' name='confirm' label='Password' onChange={handleChange} error={passwordError} required={true} />
                     </Grid2>
                 </Grid2>
                 <Grid2 container className='sign-up-form-footer' spacing={1}>
