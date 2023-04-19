@@ -5,15 +5,18 @@ const port = process.env.PORT || 8082;
 const mongoose = require('mongoose')
 const cors = require('cors')
 const usersRouter = require('./routes/users');
+const shopItemsRouter = require('./routes/shopItems');
 
 
 app.use(cors({ origin: true, credentials: true}))
 
 app.use(express.json({ extended: false}));
-app.use('/api/users', usersRouter)
 app.get('/', (req, res) => res.send('Hello world!'));
+app.use('/api/users', usersRouter)
+app.use('/api/items', shopItemsRouter)
 
 
+// Connect to Database
 const conn_str = 'mongodb+srv://stephennemeth4:mongoweb4300@cluster0.cazkobe.mongodb.net/?retryWrites=true&w=majority'
 
 mongoose.set('strictQuery', false);
