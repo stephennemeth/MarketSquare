@@ -1,82 +1,94 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Button, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Container} from '@mui/system';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import {AppContext} from '../App'
 
-const SignUpForm = ({authState, setAuthState, setDarkMode}) => {
+import axios from 'axios'
+
+const SignUpForm = () => {
     const navigate = useNavigate();
-    const [passwordError, setPasswordError] = useState(false)
-    const [signUpState, setSignUpState] = useState({
-        firstName: '',
-        lastName: '',
-        username: '',
-        email: '',
-        number: '',
-        password: '',
-        confirm: ''
-    })
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [number, setNumber] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirm, setConfirm] = useState('')
 
-    const handleChange = (event) => {
-        const {name, value} = event.target 
-        setSignUpState((prevState) => ({
-            ...prevState,
-            [name] : value
-        }))
-    }
+    const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
+
 
     const onSubmit = async (event) => {
         try {
             event.preventDefault()
             checkPasswords()
-            navigate('/')
+            const response = await createUser()
+            setUser({name : response.body.name})
+            setAuthState(true)
+            navigate("/")
         } catch (error) {
             alert(error.message)
         }
     }
 
+    const createUser = async () => {
+        const response = await axios
+        .post(
+            "http://localhost:8082/api/users/",
+            {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                number: number,
+                username: username,
+                password: password
+            }
+        )
+
+        if (response.status !== 201) {
+            throw new Error("There was an error creating your account")
+        }
+
+        return response
+    }
+
     const checkPasswords = () => {
-        if (signUpState.password !== signUpState.confirm) {
-            setPasswordError(true)
+        if (password !== confirm) {
             throw new Error("Passwords do not match")
         }
     }
 
     return (
         <form onSubmit={onSubmit} className='sign-up-form'>
-            <Container className='sign-up-form-container'>
-                <Typography variant='h4'>
-                    Sign Up
-                </Typography>
-                <Grid2 container spacing={2} className='text-field-container'>
-                    <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='firstName' label='First Name' onChange={handleChange} required />
-                    </Grid2>
-                    <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='lastName' label='Last Name' onChange={handleChange} required />
-                    </Grid2>
-                    <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='email' label='Email Address' onChange={handleChange} required />
-                    </Grid2>                        
-                    <Grid2 item sx={12} sm={6}>
-                        <TextField variant='outlined' className='text-field' name='number' label='Phone Number' onChange={handleChange} required />
-                    </Grid2>
-                    <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' name='username' label='Username' onChange={handleChange} required />
-                    </Grid2>
-                    <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' type='password' name='password' label='Password' onChange={handleChange} error={passwordError} required />
-                    </Grid2>
-                    <Grid2 item sx={12} sm={12}>
-                        <TextField variant='outlined' className='text-field' type='password' name='confirm' label='Confirm Password' onChange={handleChange} error={passwordError} required />
-                    </Grid2>
-                </Grid2>
-                <Grid2 container className='sign-up-form-footer'>
-                    <Button className="sign-up-form-submit-button" type='submit' variant='contained'>
+            <div className={darkMode ? 'sign-up-form-container-dark' : 'sign-up-form-container'}>
+                <div className='sign-up-form-title-container'>
+                    <h2>
                         Sign Up
-                    </Button>
-                </Grid2>
-            </Container>
+                    </h2>
+                </div>
+                <div className='text-field-container'>
+                    <div className='sign-up-form-text-field-grid-container'>
+                        <div className='text-field-row-grid1'>
+                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='First Name*' onChange={event => setFirstName(event.target.value)} />
+                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='email' placeholder='Email*' onChange={event => setEmail(event.target.value)}/>
+                        </div>
+                        <div className='text-field-row-grid2'>
+                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='Last Name*' onChange={event => setLastName(event.target.value)}/>
+                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='Phone Number*' onChange={event => setNumber(event.target.value)}/>
+                        </div>
+                    </div>
+                   <div className='text-field-row'>
+                        <input className={darkMode ? 'text-field-dark' : 'text-field'} type='text' placeholder='Username*' onChange={event => setUsername(event.target.value)}/>
+                        <input className={darkMode ? 'text-field-dark' : 'text-field'} type='password' placeholder='Password*' onChange={event => setPassword(event.target.value)}/>
+                        <input className={darkMode ? 'text-field-dark' : 'text-field'} type='password' placeholder='Confirm Password*' onChange={event => setConfirm(event.target.value)}/>
+                   </div>
+                </div>
+                <div className='sign-up-form-footer'>
+                    <button type='submit' className='sign-up-form-submit-button'>SIGN UP</button>
+                </div>
+            </div>
         </form>
     )
 }

@@ -4,6 +4,8 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
+import {useContext} from 'react'
+import AppContext from '../App'
 
 const style = {
     position: 'absolute',
@@ -22,6 +24,7 @@ export function NavbarMenu({myItems, setPush, authState, setAuthState }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const appContext = useContext(AppContext)
 
     const itemPush = () => {
         setPush(            
