@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Button, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Container} from '@mui/system';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import {AppContext} from '../App'
 
 import axios from 'axios'
 
-const SignUpForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
+const SignUpForm = () => {
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -16,11 +17,15 @@ const SignUpForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
 
+    const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
+
+
     const onSubmit = async (event) => {
         try {
             event.preventDefault()
             checkPasswords()
-            await createUser()
+            const response = await createUser()
+            setUser({name : response.body.name})
             setAuthState(true)
             navigate("/")
         } catch (error) {
@@ -45,6 +50,8 @@ const SignUpForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
         if (response.status !== 201) {
             throw new Error("There was an error creating your account")
         }
+
+        return response
     }
 
     const checkPasswords = () => {

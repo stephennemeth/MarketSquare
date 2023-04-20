@@ -20,7 +20,7 @@ usersRouter.post("/", async (req, res) => {
 
         newUser.save()
 
-        return res.status(201).json({msg: "User successfully created"})
+        return res.status(201).json({msg: "User successfully created", name : newUser.firstName})
 
     } catch (error) {
         return res.status(500).json({error: error.message})
@@ -38,7 +38,7 @@ usersRouter.put('/login', async (req, res) => {
         const same = await bcrypt.compare(req.body.password, user.password)
         
         if (same) {
-            return res.status(200).json({msg: "success"})
+            return res.status(200).json({msg: "success", name: user.firstName})
         } else {
             return res.status(400).json({msg: "password is incorrect"})
         }

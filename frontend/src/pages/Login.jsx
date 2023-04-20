@@ -6,7 +6,7 @@ export default function Login({ authState, setAuthState, setDarkMode, darkMode})
     return (
         <>
             <Navbar setDarkMode={setDarkMode} authState={authState} setAuthState={setAuthState} />
-            <LoginForm authState={authState} setAuthState={setAuthState} setDarkMode={setDarkMode} darkMode={darkMode}/>
+            <LoginForm />
         </>
     );
 }
