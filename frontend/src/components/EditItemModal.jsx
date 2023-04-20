@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IconButton } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

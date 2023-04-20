@@ -11,12 +11,13 @@ const API_URL = "http://localhost:8082/api";
 export const ItemsContextProvider = ({ children }) => {
 
   const fetchAllShopItems = async () => {
-    const { receivedItems } = await axios.get(API_URL + "/items");
-    console.log("Received items: ", receivedItems)
-    return receivedItems;
+    const answer = await axios.get(API_URL + "/items");
+    console.log("Received items in ItemsContextProvider: ", answer.data)
+    return answer.data;
   };
 
-  const { allShopItems, isLoading } = useQuery("allShopItems", fetchAllShopItems); // TODO Check whether it is constantly fetching
+  const { data, isLoading } = useQuery("allShopItems", fetchAllShopItems); // TODO Check whether it is constantly fetching
+  const allShopItems = data;
 
   const getAllItems = () => {
     return allShopItems;
@@ -37,8 +38,8 @@ export const ItemsContextProvider = ({ children }) => {
   return isLoading ? (
     <LoadingSkeleton />
   ) : (
-    <ItemsContext.Provider value={{ getAllItems, deleteItem, createItem, putItem }}> 
-      {children}
-    </ItemsContext.Provider>
+      <ItemsContext.Provider value={{ getAllItems, deleteItem, createItem, putItem }}>
+        {children}
+      </ItemsContext.Provider>
   );
 };

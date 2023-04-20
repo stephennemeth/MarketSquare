@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useContext } from 'react'
-import { CardActionArea, CardContent, CardMedia, } from '@mui/material';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { Box, IconButton, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 import '../css/shopitemgallerycard.css'
 
 import { Card } from './Card'
-import { EditItemModal as EditItemModal } from './EditItemModal'
+import { EditItemModal } from './EditItemModal'
 import { ViewItemModal } from './ViewItemModal'
 
 import { AppContext } from '../App'
@@ -25,7 +24,9 @@ export const ShopItemGalleryCard = ({ item }) => {
   const handleChildOpen = () => setChildOpen(true);
   const handleChildClose = () => setChildOpen(false);
   const handleDelete = () => {
-    setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); // TODO Zack: Use ItemsContext to delete item instead
+    // TODO Zack: Use ItemsContext to delete item instead
+    // Old code:
+    //setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); 
     handleClose()
   }
 
