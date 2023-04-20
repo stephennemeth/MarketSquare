@@ -1,17 +1,14 @@
-import React, { useState, lazy, Suspense, createContext} from "react";
+import React, { useState, lazy, Suspense, createContext } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { LoadingSkeleton } from "./components/LoadingSkeleton";
 import { ThemeProviderComp } from "./components/ThemeProvider";
-import { PrivateRoute } from "./components/PrivateRoute";
+import { ItemsContextProvider } from "./context/ItemsContextProvider";
 
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUpPage from "./pages/SignUp";
-const ViewItem = lazy(() => import("./pages/ViewItem"));
-const EditItem = lazy(() => import("./pages/EditItem"));
-const CreateItem = lazy(() => import("./pages/CreateItem"));
 
 export const AppContext = createContext()
 
@@ -20,24 +17,22 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState({})
 
-  const updateAuthState = (newState) => {
-    setAuthState(newState);
-  };
-
   return (
-    <AppContext.Provider value={{authState, setAuthState, darkMode, setDarkMode, user, setUser}}>
-      <BrowserRouter>
-        <ThemeProviderComp darkMode={darkMode}>
-          <Suspense fallback={<LoadingSkeleton />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUpPage/>} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </ThemeProviderComp>
-      </BrowserRouter>
+    <AppContext.Provider value={{ authState, setAuthState, darkMode, setDarkMode, user, setUser }}>
+      <ItemsContextProvider>
+        <BrowserRouter>
+          <ThemeProviderComp darkMode={darkMode}>
+            <Suspense fallback={<LoadingSkeleton />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUpPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </ThemeProviderComp>
+        </BrowserRouter>
+      </ItemsContextProvider>
     </AppContext.Provider>
   );
 }
