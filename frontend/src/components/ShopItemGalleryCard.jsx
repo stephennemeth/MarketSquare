@@ -56,7 +56,7 @@ export const ShopItemGalleryCard = ({ item }) => {
             sx={{ objectFit: 'cover' }}
 
             component="img"
-            image={item.thumbnail_url}
+            image={item.thumbnailUrl}
             alt={"Thumbnail of " + item.name}
             loading='lazy'
           />
