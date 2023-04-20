@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 
-import '../css/edititembutton.css'
+import '../css/edititemmodal.css'
 
 
-export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handleClose, handleDelete, item, openChild }) {
+export function EditItemModal({ parentOpen, handleChildClose, handleOpen, handleClose, handleDelete, item, openChild }) {
     const handleSubmit = () => {
         item.name = document.getElementById('edit-item').value
         item.price = document.getElementById('edit-price').value
@@ -35,10 +35,6 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
     };
 
     return (
-        <div className="edit-button-wrapper">
-            <IconButton onClick={handleOpen} aria-label="Edit">
-                <EditIcon />
-            </IconButton>
             <Modal className='edit-modal'
                 open={parentOpen}
                 onClose={handleClose}
@@ -69,7 +65,6 @@ export function EditItemButton({ parentOpen, handleChildClose, handleOpen, handl
                     </IconButton>
                 </Box>
             </Modal>
-        </div>
 
     )
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { CardActionArea, CardContent, CardMedia, } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -7,12 +7,12 @@ import Typography from '@mui/material/Typography';
 import '../css/shopitemgallerycard.css'
 
 import { Card } from './Card'
-import { EditItemButton } from './EditItemButton'
-import { ViewItemButton } from './ViewItemButton'
+import { EditItemModal as EditItemModal } from './EditItemModal'
+import { ViewItemModal } from './ViewItemModal'
 
-import {AppContext} from '../App'
+import { AppContext } from '../App'
 
-export const ShopItemGalleryCard = ({item}) => {
+export const ShopItemGalleryCard = ({ item }) => {
 
 
   const appContext = useContext(AppContext);
@@ -25,21 +25,26 @@ export const ShopItemGalleryCard = ({item}) => {
   const handleChildOpen = () => setChildOpen(true);
   const handleChildClose = () => setChildOpen(false);
   const handleDelete = () => {
-    setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); // TODO: Bring this into HOME: Add a deleteItem function to the context
+    setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); // TODO Zack: Use ItemsContext to delete item instead
     handleClose()
   }
 
   const editItemButton = appContext.authState ? (
-
-    <EditItemButton
-      parentOpen={open}
-      childOpen={openChild}
-      handleOpen={handleOpen}
-      handleClose={handleClose}
-      handleDelete={handleDelete}
-      item={item}
-      openChild={openChild} />
-
+    <>
+      <div className="edit-button-wrapper">
+        <IconButton onClick={handleOpen} aria-label="Edit">
+          <EditIcon />
+        </IconButton>
+      </div>
+      <EditItemModal
+        parentOpen={open}
+        childOpen={openChild}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+        item={item}
+        openChild={openChild} />
+    </>
   ) : null
 
   return (
@@ -57,14 +62,16 @@ export const ShopItemGalleryCard = ({item}) => {
         </CardActionArea>
         <Box className='itemcard-content'>
           <CardActionArea onClick={handleChildOpen}>
-
             <CardContent>
+
               <Typography>
                 {item.name}
               </Typography>
+
               <Typography className='price-text'>
                 ${item.price}
               </Typography>
+              
             </CardContent>
           </CardActionArea>
           {editItemButton}
@@ -72,7 +79,7 @@ export const ShopItemGalleryCard = ({item}) => {
       </Card>
 
 
-      <ViewItemButton
+      <ViewItemModal
         openChild={openChild}
         handleChildClose={handleChildClose}
         item={item} />

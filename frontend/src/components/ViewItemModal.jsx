@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 
-export function ViewItemButton({ openChild, handleChildClose, item }) {
+export function ViewItemModal({ openChild, handleChildClose, item }) {
     const viewItemBoxStyle = {
         position: 'absolute',
         top: '50%',
