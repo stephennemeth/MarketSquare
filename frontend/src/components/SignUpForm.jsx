@@ -65,10 +65,10 @@ const SignUpForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
                     <div className='sign-up-form-text-field-grid-container'>
                         <div className='text-field-row-grid1'>
                                 <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='First Name*' onChange={event => setFirstName(event.target.value)} />
-                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='Last Name*' onChange={event => setLastName(event.target.value)}/>
+                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='email' placeholder='Email*' onChange={event => setEmail(event.target.value)}/>
                         </div>
                         <div className='text-field-row-grid2'>
-                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='email' placeholder='Email*' onChange={event => setEmail(event.target.value)}/>
+                                <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='Last Name*' onChange={event => setLastName(event.target.value)}/>
                                 <input className={darkMode ? 'text-field-grid-dark' : 'text-field-grid'} type='text' placeholder='Phone Number*' onChange={event => setNumber(event.target.value)}/>
                         </div>
                     </div>

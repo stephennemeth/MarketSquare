@@ -41,7 +41,7 @@
     justify-content: center;
     justify-self: center;
     width: 100%;
-    margin: auto !important
+    margin: auto !important;
 }
 
 .text-field {
@@ -50,6 +50,7 @@
     height: 50px;
     border: solid #e0e0e0;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .text-field-dark {
@@ -59,7 +60,8 @@
     border: solid white;
     border-radius: 5px;
     background-color: black;
-    color: white
+    color: white;
+    padding: 10px
 }
 
 .text-field-grid {
@@ -72,6 +74,7 @@
     margin: 5px;
     border: solid #e0e0e0;
     border-radius: 5px;
+    padding: 10px
 }
 
 .text-field-grid-dark {
@@ -86,6 +89,7 @@
     border-radius: 5px;
     background-color: black;
     color: white;
+    padding: 10px
 }
 
 .sign-up-form-text-field-grid-container {

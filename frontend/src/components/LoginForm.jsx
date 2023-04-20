@@ -10,9 +10,7 @@ import axios from 'axios'
 
 const LoginForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
 
-    const navigate = useNavigate();
-    const [usernameError, setUsernameError] = useState(false)
-    const [passwordError, setPasswordError] = useState(false)
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -21,13 +19,6 @@ const LoginForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
             event.preventDefault()
             const response = await login()
             console.log(response)
-            if (response.status === 401) {
-                setUsernameError(true)
-                throw new Error("There does not appear to be a user with that username")
-            } else if (response.status === 402) {
-                setPasswordError(true)
-                throw new Error("That password does match that username")
-            }
             setAuthState(true)
             navigate("/")
         } catch (error) {
