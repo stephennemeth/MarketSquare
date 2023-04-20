@@ -27,8 +27,8 @@ function App() {
         <Suspense fallback={<LoadingSkeleton />}>
           <Routes>
             <Route path="/" element={<Home authState={authState} setAuthState={setAuthState} setDarkMode={setDarkMode} />} />
-            <Route path="/login" element={<Login authState={authState} setAuthState={updateAuthState} setDarkMode={setDarkMode} />} />
-            <Route path="/signup" element={<SignUpPage authState={authState} setAuthState={updateAuthState} setDarkMode={setDarkMode}/>} />
+            <Route path="/login" element={<Login authState={authState} setAuthState={updateAuthState} setDarkMode={setDarkMode} darkMode={darkMode} />} />
+            <Route path="/signup" element={<SignUpPage authState={authState} setAuthState={updateAuthState} setDarkMode={setDarkMode} darkMode={darkMode}/>} />
             <Route path="/item/view/:slug" element={<ViewItem authState={authState} />} />
             <Route
               path="/item/edit/:slug"
