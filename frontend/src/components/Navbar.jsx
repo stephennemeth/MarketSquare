@@ -15,7 +15,7 @@ import {AppContext} from '../App'
 
 
 import '../css/navbar.css'
-export const Navbar = (myItems, setPush) => {
+export const Navbar = () => {
 
   const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ export const Navbar = (myItems, setPush) => {
               DarkMode
             </Typography>
 
-            <NavbarMenu myItems = {myItems} setPush = {setPush} authState={authState} setAuthState={setAuthState}/>
+            <NavbarMenu/>
 
           </Box>
         </Toolbar>

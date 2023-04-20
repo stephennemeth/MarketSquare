@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import { Navbar } from "../components/Navbar";
 import { Container, Grid } from "@mui/material";
 import { ShopItemGalleryCard } from "../components/ShopItemGalleryCard";
@@ -7,37 +7,37 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8082/api";
 
-export default function Home({ authState, setDarkMode, setAuthState }) {
+export default function Home() {
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [itemsData, setItemsData] = useState([]);
-
-  const receiveItems = (receivedItems) => {
+  const fetchAllShopItems = async () => {
+    const { receivedItems } = await axios.get(API_URL + "/items");
     console.log("Received items: ", receivedItems)
-    setItemsData(receivedItems);
-    setIsLoading(false);
+    return receivedItems;
   };
 
-  // Get all items from backend // TODO is constantly reloading
-  axios.get(API_URL + "/items").then((res) => {
-    receiveItems(res.data);
-  });
+  const { allShopItems, isLoading } = useQuery("allShopItems", fetchAllShopItems);
+
+
+  // itemsContext.deleteItem(item) = () => {
+  //   // axios.delete(API_URL + "/items/" + item.id).then((res) => {....
+    
+  // }
+  // itemsContext.createItem(item)
+  // itemsContext.putItem(item)
+
 
   return isLoading ? (
     <LoadingSkeleton />
   ) : (
     <>
-      <Navbar setDarkMode={setDarkMode} authState={authState} setAuthState={setAuthState} />
+      <Navbar />
       <main>
         <Container maxWidth={"lg"} sx={{ marginTop: 3 }}>
           <Grid container spacing={2}>
-            {itemsData?.map((item) => (
+            {allShopItems?.map((item) => (
               <Grid key={item.id} item xs={12} md={4}>
                 <ShopItemGalleryCard
-                  itemsData={itemsData}
-                  setItemsData={setItemsData}
                   item={item}
-                  authState={authState}
                 />
               </Grid>
             ))}

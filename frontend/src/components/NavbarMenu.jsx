@@ -19,16 +19,20 @@ const style = {
     p: 4,
   };
 
-export function NavbarMenu({myItems, setPush, authState, setAuthState }) {
+export function NavbarMenu() {
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const appContext = useContext(AppContext)
+
+    const appContext = useContext(AppContext);
+    const authState = appContext.authState;
+    const setAuthState = appContext.setAuthState;
+
 
     const itemPush = () => {
-        setPush(            
-            myItems.push(
+        setPush(            // TODO: Get setPush from Items context
+            myItems.push(   // TODO: Get itemsData from Items context instead of myItems
                 {
                     id: 69,
                     slug: "newItem999",

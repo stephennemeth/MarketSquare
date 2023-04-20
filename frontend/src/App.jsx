@@ -30,18 +30,9 @@ function App() {
         <ThemeProviderComp darkMode={darkMode}>
           <Suspense fallback={<LoadingSkeleton />}>
             <Routes>
-              <Route path="/" element={<Home authState={authState} setAuthState={setAuthState} setDarkMode={setDarkMode} />} />
-              <Route path="/login" element={<Login authState={authState} setAuthState={updateAuthState} setDarkMode={setDarkMode} darkMode={darkMode} />} />
-              <Route path="/signup" element={<SignUpPage authState={authState} setAuthState={updateAuthState} setDarkMode={setDarkMode} darkMode={darkMode}/>} />
-              <Route path="/item/view/:slug" element={<ViewItem authState={authState} />} />
-              <Route
-                path="/item/edit/:slug"
-                element={<PrivateRoute component={EditItem} authState={authState}/>}
-              />
-              <Route
-                path="/item/create"
-                element={<PrivateRoute component={CreateItem} authState={authState} />}
-              />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUpPage/>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

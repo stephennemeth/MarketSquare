@@ -1,15 +1,22 @@
 import * as React from 'react';
+import {useContext} from 'react'
 import { CardActionArea, CardContent, CardMedia, } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { EditItemButton } from './EditItemButton'
-import { ViewItemButton } from './ViewItemButton'
 
 import '../css/shopitemgallerycard.css'
 
 import { Card } from './Card'
+import { EditItemButton } from './EditItemButton'
+import { ViewItemButton } from './ViewItemButton'
 
-export const ShopItemGalleryCard = ({ ITEMS, setITEMS, item, authState }) => {
+import {AppContext} from '../App'
+
+export const ShopItemGalleryCard = ({item}) => {
+
+
+  const appContext = useContext(AppContext);
+
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -18,11 +25,11 @@ export const ShopItemGalleryCard = ({ ITEMS, setITEMS, item, authState }) => {
   const handleChildOpen = () => setChildOpen(true);
   const handleChildClose = () => setChildOpen(false);
   const handleDelete = () => {
-    setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) });
+    setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); // TODO: Bring this into HOME: Add a deleteItem function to the context
     handleClose()
   }
 
-  const editItemButton = authState ? (
+  const editItemButton = appContext.authState ? (
 
     <EditItemButton
       parentOpen={open}
