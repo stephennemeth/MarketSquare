@@ -10,10 +10,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { MaterialUISwitch } from "./Switch";
 import { NavbarMenu } from "./NavbarMenu";
+import {useContext} from 'react'
+import {AppContext} from '../App'
+
 
 import '../css/navbar.css'
-export const Navbar = ({ myItems, setPush, setDarkMode, authState, setAuthState }) => {
+export const Navbar = (myItems, setPush) => {
 
+  const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -42,7 +46,7 @@ export const Navbar = ({ myItems, setPush, setDarkMode, authState, setAuthState 
           />
           {authState &&
               <Typography className="greetings">
-                Hello, User
+                Hello, {user.name}
               </Typography>
           }
           

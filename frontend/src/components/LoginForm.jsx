@@ -1,24 +1,28 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Button, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Container } from '@mui/system';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import '../css/login.css'
+import {AppContext} from '../App'
 
 import axios from 'axios'
 
 
-const LoginForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
+const LoginForm = () => {
 
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const {auth, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
+
+
     const onSubmit = async (event) => {
         try {
             event.preventDefault()
             const response = await login()
-            console.log(response)
+            setUser({name : response.data.name})
             setAuthState(true)
             navigate("/")
         } catch (error) {
@@ -39,7 +43,7 @@ const LoginForm = ({authState, setAuthState, setDarkMode, darkMode}) => {
                     password : password
                 }
             )
-        return response.status
+        return response
     }
 
     return (
