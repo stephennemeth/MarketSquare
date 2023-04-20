@@ -32,16 +32,15 @@ usersRouter.put('/login', async (req, res) => {
         const username = req.body.username
         const user = await User.findOne({username})
         if (!user || user === null) { 
-            return res.status(401)
+            return res.status(400)
         }   
 
-        const hashedPassword = await bcrypt.hash(req.body.password, 8)
-        const same = await bcrypt.compare(hashedPassword, user.password)
-
+        const same = await bcrypt.compare(req.body.password, user.password)
+        
         if (same) {
             return res.status(200).json({msg: "success"})
         } else {
-            return res.status(402).json({msg: "password is incorrect"})
+            return res.status(400).json({msg: "password is incorrect"})
         }
     } catch (error) {
         return res.status(500).json({error : error.message})
