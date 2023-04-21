@@ -45,7 +45,7 @@ export function NavbarMenu() {
         // );
         handleClose();
     }
-    // TODO Implement real logout behavior
+    // TODO Steven: Implement real logout behavior
     const logoutHandler = () => {
         if (!authState) return
         setAuthState(false)
