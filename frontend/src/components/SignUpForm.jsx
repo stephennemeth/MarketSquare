@@ -30,7 +30,7 @@ const SignUpForm = () => {
             checkFields()
             checkPasswords()
             const response = await createUser()
-            setUser({name : response.body.name})
+            setUser({name : response.data.name})
             setAuthState(true)
             navigate("/")
         } catch (error) {
