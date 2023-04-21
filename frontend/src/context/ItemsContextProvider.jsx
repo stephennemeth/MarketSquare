@@ -16,7 +16,7 @@ export const ItemsContextProvider = ({ children }) => {
     return answer.data;
   };
 
-  const { data, isLoading } = useQuery("allShopItems", fetchAllShopItems); // TODO Check whether it is constantly fetching
+  const { data, isLoading } = useQuery("allShopItems", fetchAllShopItems);
   const allShopItems = data;
 
   const getAllItems = () => {
