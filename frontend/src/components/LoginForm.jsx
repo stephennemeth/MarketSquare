@@ -17,10 +17,15 @@ const LoginForm = () => {
 
     const {auth, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
 
-
+    const checkFields = () => {
+        if (!username || !password) {
+            throw new Error("Please ensure that all fields are filled out")
+        }
+    }
     const onSubmit = async (event) => {
         try {
             event.preventDefault()
+            checkFields()
             const response = await login()
             setUser({name : response.data.name})
             setAuthState(true)

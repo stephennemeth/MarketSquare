@@ -19,10 +19,15 @@ const SignUpForm = () => {
 
     const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
 
-
+    const checkFields = () => {
+        if (!firstName || !lastName || !email || !number || !username || !password || !confirm) {
+            throw new Error("Please ensure that all fields are filled out")
+        }
+    }
     const onSubmit = async (event) => {
         try {
             event.preventDefault()
+            checkFields()
             checkPasswords()
             const response = await createUser()
             setUser({name : response.body.name})
