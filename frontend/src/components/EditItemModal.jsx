@@ -6,18 +6,39 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { useContext } from "react";
+import { ItemsContext } from "../context/ItemsContextProvider";
+import { useNavigate } from "react-router-dom";
 
 import '../css/edititemmodal.css'
 
 
-export function EditItemModal({ parentOpen, handleChildClose, handleOpen, handleClose, handleDelete, item, openChild }) {
+export function EditItemModal({ parentOpen, handleClose, item}) {
+    const navigate = useNavigate();
+    const { deleteItem } = useContext(ItemsContext);
+    const { putItem } = useContext(ItemsContext);
+    const deleteMe = () =>{
+        deleteItem(item);
+        handleClose();
+    }
     const handleSubmit = () => {
-        item.name = document.getElementById('edit-item').value
-        item.price = document.getElementById('edit-price').value
-        item.description = document.getElementById('edit-description').value
-        item.condtition = document.getElementById('edit-condition').value
-        item.owner = document.getElementById('edit-owner').value
-        item.thumbnail_url = document.getElementById('edit-image-url').value
+
+          item.name = document.getElementById('edit-item').value
+          item.price = document.getElementById('edit-price').value
+          item.description = document.getElementById('edit-description').value
+          item.condtition = document.getElementById('edit-condition').value
+          item.owner = document.getElementById('edit-owner').value
+          item.thumbnail_url = document.getElementById('edit-image-url').value
+
+         const data = {
+            name: item.name,
+            price: item.price,
+            thumbnail_url: item.thumbnail_url,
+            description: item.description,
+            condtition: item.condtition
+         }
+         putItem(item,data)
+
         handleClose()
     }
 
@@ -59,7 +80,7 @@ export function EditItemModal({ parentOpen, handleChildClose, handleOpen, handle
                     >
                         Submit
                     </Button>
-                    <IconButton aria-label="Delete" className='edit-item-modal-button' onClick={handleDelete}>
+                    <IconButton aria-label="Delete" className='edit-item-modal-button' onClick={deleteMe}>
                         <DeleteIcon />
                     </IconButton>
                 </Box>
