@@ -41,7 +41,7 @@ export const ShopItemGalleryCard = ({ item }) => {
         childOpen={openChild}
         handleOpen={handleOpen}
         handleClose={handleClose}
-        handleDelete={handleDelete}
+        //handleDelete={handleDelete}
         item={item}
         openChild={openChild} />
     </>
