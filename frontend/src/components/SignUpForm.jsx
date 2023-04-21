@@ -1,8 +1,5 @@
 import { useState, useContext } from 'react'
-import { Button, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Container} from '@mui/system';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 import {AppContext} from '../App'
 
 import axios from 'axios'
@@ -17,7 +14,7 @@ const SignUpForm = () => {
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
 
-    const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
+    const {setAuthState, darkMode, setUser} = useContext(AppContext)
 
     const checkFields = () => {
         if (!firstName || !lastName || !email || !number || !username || !password || !confirm) {
