@@ -25,7 +25,7 @@ export const ItemsContextProvider = ({ children }) => {
 
   const deleteItem = (item) => {
     axios.delete(API_URL + `/items/${item._id}`)
-    .then((res) =>{} )
+    .then()
     .catch((err) => console.log('Error form EditItemd_deleteClick'))
   }
 
@@ -39,7 +39,7 @@ export const ItemsContextProvider = ({ children }) => {
 
   const putItem = (item, data) => {
     axios.put(API_URL + `/items/${item._id}`, data)
-    .then((res) =>{} )
+    .then()
     .catch((err) => console.log('Error form EditItem_SubmitClick'))
   }
 

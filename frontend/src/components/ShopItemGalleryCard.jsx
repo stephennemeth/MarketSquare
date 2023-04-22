@@ -12,11 +12,7 @@ import { ViewItemModal } from './ViewItemModal'
 import { AppContext } from '../App'
 
 export const ShopItemGalleryCard = ({ item }) => {
-
-
   const appContext = useContext(AppContext);
-
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
