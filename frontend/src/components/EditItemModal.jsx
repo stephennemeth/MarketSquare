@@ -8,13 +8,11 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { useContext } from "react";
 import { ItemsContext } from "../context/ItemsContextProvider";
-import { useNavigate } from "react-router-dom";
 
 import '../css/edititemmodal.css'
 
 
 export function EditItemModal({ parentOpen, handleClose, item}) {
-    const navigate = useNavigate();
     const { deleteItem } = useContext(ItemsContext);
     const { putItem } = useContext(ItemsContext);
     const deleteMe = () =>{
