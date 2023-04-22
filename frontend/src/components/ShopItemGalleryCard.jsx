@@ -12,22 +12,13 @@ import { ViewItemModal } from './ViewItemModal'
 import { AppContext } from '../App'
 
 export const ShopItemGalleryCard = ({ item }) => {
-
-
   const appContext = useContext(AppContext);
-
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [openChild, setChildOpen] = React.useState(false);
   const handleChildOpen = () => setChildOpen(true);
   const handleChildClose = () => setChildOpen(false);
-  // const handleDelete = () => {
-  //   // Old code:
-  //   //setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); 
-  //   handleClose()
-  // }
 
   const editItemButton = appContext.authState ? (
     <>
@@ -41,7 +32,6 @@ export const ShopItemGalleryCard = ({ item }) => {
         childOpen={openChild}
         handleOpen={handleOpen}
         handleClose={handleClose}
-        //handleDelete={handleDelete}
         item={item}
         openChild={openChild} />
     </>

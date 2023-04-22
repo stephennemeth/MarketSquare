@@ -25,14 +25,18 @@ export const ItemsContextProvider = ({ children }) => {
 
   const deleteItem = (item) => {
     axios.delete(API_URL + `/items/${item._id}`)
-    .then((res) =>{} )
+    .then((res) =>{
+      window.location.reload();
+    } )
     .catch((err) => console.log('Error form EditItemd_deleteClick'))
     // TODO Zack: implement delete item
   }
 
   const createItem = (item) => {
     axios.post(API_URL + `/items/`,item)
-    .then()
+    .then((res => {
+      window.location.reload();
+    }))
     .catch((err) => {
       console.log('Error in CreateItem!')
     })
@@ -40,7 +44,9 @@ export const ItemsContextProvider = ({ children }) => {
 
   const putItem = (item, data) => {
     axios.put(API_URL + `/items/${item._id}`, data)
-    .then((res) =>{} )
+    .then((res) =>{
+      window.location.reload();
+    } )
     .catch((err) => console.log('Error form EditItemd_SubmitClick'))
   }
 

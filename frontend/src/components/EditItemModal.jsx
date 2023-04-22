@@ -28,7 +28,7 @@ export function EditItemModal({ parentOpen, handleClose, item}) {
           item.description = document.getElementById('edit-description').value
           item.condtition = document.getElementById('edit-condition').value
           item.owner = document.getElementById('edit-owner').value
-          item.thumbnail_url = document.getElementById('edit-image-url').value
+          item.thumbnailUrl = document.getElementById('edit-image-url').value
 
          const data = {
             name: item.name,

@@ -27,7 +27,7 @@ export function CreateItemModal({open, handleClose}) {
             description: document.getElementById('item-description').value,
             condtition: document.getElementById('item-condition').value,
             owner: document.getElementById('item-owner').value,
-            thumbnail_url: document.getElementById('item-image-url').value,
+            thumbnailUrl: document.getElementById('item-image-url').value,
         }
         createItem(myItem);
         handleClose();

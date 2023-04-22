@@ -51,7 +51,7 @@ export function ViewItemModal({ openChild, handleChildClose, item }) {
                             sx={{ objectFit: 'contain' }}
                             component="img"
                             height="244"
-                            image={item.thumbnail_url}
+                            image={item.thumbnailUrl}
                             alt={"Thumbnail of " + item.name}
                             loading='lazy'
                         />
