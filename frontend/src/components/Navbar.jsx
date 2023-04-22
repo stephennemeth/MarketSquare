@@ -19,7 +19,7 @@ import {AppContext} from '../App'
 import '../css/navbar.css'
 export const Navbar = () => {
 
-  const {authState, setDarkMode, user} = useContext(AppContext)
+  const {authState, setDarkMode, darkMode, user} = useContext(AppContext)
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
@@ -57,6 +57,7 @@ export const Navbar = () => {
               <FormControlLabel
                 control={
                   <MaterialUISwitch
+                    checked={darkMode}
                     onChange={toogleDarkMode}
                   />
                 }

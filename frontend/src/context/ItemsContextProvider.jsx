@@ -10,6 +10,7 @@ export const ItemsContext = createContext({});
 const API_URL = "http://localhost:8082/api";
 
 export const ItemsContextProvider = ({ children }) => {
+  
 
   const fetchAllShopItems = async () => {
     const answer = await axios.get(API_URL + "/items");
@@ -23,7 +24,7 @@ export const ItemsContextProvider = ({ children }) => {
   }
 
   const deleteItem = (item) => {
-    axios.delete(API_URL + `/items/${item._id}`)
+    axios.delete(API_URL + `/items/${item._id}`, {headers : {token : localStorage.getItem("token")}})
       .then(() => {
         setAllShopItems(allShopItems.filter((i) => i._id !== item._id));
         console.log("Deleted item: ", item)
@@ -32,7 +33,7 @@ export const ItemsContextProvider = ({ children }) => {
   }
 
   const createItem = (item) => {
-    axios.post(API_URL + `/items/`, item)
+    axios.post(API_URL + `/items/`, item, {headers : {token : localStorage.getItem("token")}})
       .then((res) => {
         item._id = res.data._id;
         setAllShopItems([...allShopItems, item]);
@@ -44,7 +45,7 @@ export const ItemsContextProvider = ({ children }) => {
   }
 
   const putItem = (item) => {
-    axios.put(API_URL + `/items/${item._id}`, item)
+    axios.put(API_URL + `/items/${item._id}`, item, {headers : {token : localStorage.getItem("token")}})
       .then(() => {
         setAllShopItems(allShopItems.map((i) => i._id === item._id ? item : i));
         console.log("Updated item: ", item)

@@ -1,8 +1,5 @@
 import { useState, useContext } from 'react'
-import { Button, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Container } from '@mui/system';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import '../css/login.css'
 import {AppContext} from '../App'
 
@@ -15,7 +12,7 @@ const LoginForm = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const {auth, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
+    const {setAuthState, darkMode, setUser} = useContext(AppContext)
 
     const checkFields = () => {
         if (!username || !password) {
@@ -26,10 +23,8 @@ const LoginForm = () => {
         try {
             event.preventDefault()
             checkFields()
-            const response = await login()
-            setUser({name : response.data.name})
-            setAuthState(true)
-            navigate("/")
+            await login()
+            navigate('/')
         } catch (error) {
             alert(error.message)
         }
@@ -40,15 +35,16 @@ const LoginForm = () => {
     }
 
     const login = async () => {
-        const response = await axios
-            .put(
-                "http://localhost:8082/api/users/login",
-                {
-                    username : username,
-                    password : password
-                }
-            )
-        return response
+        const loginResponse = await axios.post("http://localhost:8082/api/users/login",
+        {
+            username,
+            password
+        })
+        console.log(loginResponse.data)
+        localStorage.setItem("token", loginResponse.data.token)
+        localStorage.setItem("id", loginResponse.data.id)
+        setUser({name : loginResponse.data.name, token: loginResponse.data.token, id : loginResponse.data.id})
+        setAuthState(true)
     }
 
     return (

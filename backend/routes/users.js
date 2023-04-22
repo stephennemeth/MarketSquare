@@ -1,12 +1,28 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const usersRouter = express.Router()
-
+const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth')
 const User = require('../models/User')
+const mongoose = require('mongoose')
+
+usersRouter.get("/:id", auth, async (req, res) => {
+    try {
+        const id = new mongoose.Types.ObjectId(req.params.id)
+        console.log(id)
+        const user = await User.findById(id)
+        return res.json({
+            id: user.id,
+            firstName : user.firstName
+        })
+    } catch (error) {
+        console.log(error.message)
+        return res.json(false)
+    }
+})
 
 usersRouter.post("/", async (req, res) => {
     try {
-
         const hashedPassword = await bcrypt.hash(req.body.password, 8)
 
         const newUser = new User({
@@ -20,14 +36,14 @@ usersRouter.post("/", async (req, res) => {
 
         newUser.save()
 
-        return res.status(201).json({msg: "User successfully created", name : newUser.firstName})
+        return res.status(201).json({msg: "User successfully created"})
 
     } catch (error) {
         return res.status(500).json({error: error.message})
     }
 })
 
-usersRouter.put('/login', async (req, res) => {
+usersRouter.post('/login', async (req, res) => {
     try {
         const username = req.body.username
         const user = await User.findOne({username})
@@ -38,12 +54,33 @@ usersRouter.put('/login', async (req, res) => {
         const same = await bcrypt.compare(req.body.password, user.password)
         
         if (same) {
-            return res.status(200).json({msg: "success", name: user.firstName})
+            const token = jwt.sign({id : user._id}, "passwordKey")
+            return res.status(200).json({msg: "success", name: user.firstName, token, id : user._id})
         } else {
             return res.status(400).json({msg: "password is incorrect"})
         }
     } catch (error) {
         return res.status(500).json({error : error.message})
+    }
+})
+
+usersRouter.post("/checkToken", (req, res) => {
+    try {
+        token = req.header("token")
+        if (!token) {
+            return res.json(false)
+        }
+
+        const verified = jwt.verify(token, "passwordKey")
+
+        if (!verified) {
+            return res.json(false)
+        }
+
+        return res.json(true)
+    } catch (error) {
+        console.log(error.message)
+        return res.status(500).json({error : error.message })
     }
 })
 

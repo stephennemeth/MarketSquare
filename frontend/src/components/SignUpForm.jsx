@@ -20,46 +20,35 @@ const SignUpForm = () => {
         if (!firstName || !lastName || !email || !number || !username || !password || !confirm) {
             throw new Error("Please ensure that all fields are filled out")
         }
+
+        if (password !== confirm) {
+            throw new Error("Passwords are not the same")
+        }
     }
     const onSubmit = async (event) => {
         try {
             event.preventDefault()
             checkFields()
-            checkPasswords()
-            const response = await createUser()
-            setUser({name : response.data.name})
-            setAuthState(true)
+            await createUserAndLogin()
             navigate("/")
         } catch (error) {
             alert(error.message)
         }
     }
 
-    const createUser = async () => {
-        const response = await axios
-        .post(
-            "http://localhost:8082/api/users/",
-            {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                number: number,
-                username: username,
-                password: password
-            }
-        )
+    const createUserAndLogin = async () => {
+        const newUser = {firstName, lastName, email, number, username, password}
+        await axios.post("http://localhost:8082/api/users/", newUser)
+        const loginResponse = await axios.post("http://localhost:8082/api/users/login",
+        {
+            username,
+            password
+        })
 
-        if (response.status !== 201) {
-            throw new Error("There was an error creating your account")
-        }
-
-        return response
-    }
-
-    const checkPasswords = () => {
-        if (password !== confirm) {
-            throw new Error("Passwords do not match")
-        }
+        localStorage.setItem("token", loginResponse.data.token)
+        localStorage.setItem("id", loginResponse.data.id)
+        setUser({name: loginResponse.data.name, token: loginResponse.data.token, id : loginResponse.data.id})
+        setAuthState(true)
     }
 
     return (
