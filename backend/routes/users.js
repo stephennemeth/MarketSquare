@@ -34,6 +34,12 @@ usersRouter.post("/", async (req, res) => {
             password: hashedPassword
         })
 
+        const exists = User.findOne(newUser)
+
+        if (exists) {
+            return res.status(401).json({msg : "A User with these credentials exists"})
+        }
+
         newUser.save()
 
         return res.status(201).json({msg: "User successfully created"})
