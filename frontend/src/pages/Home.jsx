@@ -1,6 +1,7 @@
 import React from "react";
-import { Navbar } from "../components/Navbar";
 import { Container, Grid } from "@mui/material";
+
+import { Navbar } from "../components/Navbar";
 import { ShopItemGalleryCard } from "../components/ShopItemGalleryCard";
 
 import { useContext } from "react";

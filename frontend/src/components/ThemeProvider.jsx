@@ -1,10 +1,10 @@
 import React from 'react'
-import { ThemeProvider, CssBaseline, createTheme } from '@mui/material'
+import { ThemeProvider as MUIThemeProvider, CssBaseline, createTheme } from '@mui/material'
 
 import Poppins from '../fonts/Poppins-Medium.ttf';
 
 
-export const ThemeProviderComp = ({ children, darkMode }) => {
+export const ThemeProvider = ({ children, darkMode }) => {
 
   const theme = createTheme({
     typography: {
@@ -30,9 +30,9 @@ export const ThemeProviderComp = ({ children, darkMode }) => {
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <MUIThemeProvider theme={theme}>
       <CssBaseline />
       {children}
-    </ThemeProvider>
+    </MUIThemeProvider>
   )
 }

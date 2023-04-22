@@ -7,17 +7,19 @@ import {
   FormControlLabel,
   Toolbar,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { MaterialUISwitch } from "./Switch";
-import { NavbarMenu } from "./NavbarMenu";
 import {useContext} from 'react'
+import { useNavigate } from "react-router-dom";
+
+import { MaterialUISwitch } from "./MaterialUISwitch";
+import { NavbarMenu } from "./NavbarMenu";
+
 import {AppContext} from '../App'
 
 
 import '../css/navbar.css'
 export const Navbar = () => {
 
-  const {authState, setAuthState, darkMode, setDarkMode, user, setUser} = useContext(AppContext)
+  const {authState, setDarkMode, user} = useContext(AppContext)
   const navigate = useNavigate();
   const toogleDarkMode = () => setDarkMode((prev) => !prev);
 
