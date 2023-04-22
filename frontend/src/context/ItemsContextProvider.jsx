@@ -27,6 +27,7 @@ export const ItemsContextProvider = ({ children }) => {
       .then(() => {
         setAllShopItems(allShopItems.filter((i) => i._id !== item._id));
         console.log("Deleted item: ", item)
+
       })
       .catch((err) => console.log('Error form EditItemd_deleteClick'))
   }
@@ -36,7 +37,8 @@ export const ItemsContextProvider = ({ children }) => {
       .then((res) => {
         item._id = res.data._id;
         setAllShopItems([...allShopItems, item]);
-        console.log("Created item: ", item, res)
+        console.log("Created item: ", item, res);
+        fetchAllShopItems();
       })
       .catch((err) => {
         console.log('Error in CreateItem!')
