@@ -23,12 +23,6 @@ export const ShopItemGalleryCard = ({ item }) => {
   const [openChild, setChildOpen] = React.useState(false);
   const handleChildOpen = () => setChildOpen(true);
   const handleChildClose = () => setChildOpen(false);
-  const handleDelete = () => {
-    // TODO Zack: Use ItemsContext to delete item instead
-    // Old code:
-    //setITEMS(itemsData => { return itemsData.filter((thing) => thing.id !== item.id) }); 
-    handleClose()
-  }
 
   const editItemButton = appContext.authState ? (
     <>
@@ -42,7 +36,6 @@ export const ShopItemGalleryCard = ({ item }) => {
         childOpen={openChild}
         handleOpen={handleOpen}
         handleClose={handleClose}
-        handleDelete={handleDelete}
         item={item}
         openChild={openChild} />
     </>

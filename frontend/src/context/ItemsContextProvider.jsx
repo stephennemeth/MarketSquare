@@ -24,15 +24,23 @@ export const ItemsContextProvider = ({ children }) => {
   }
 
   const deleteItem = (item) => {
-    // TODO Zack: implement delete item
+    axios.delete(API_URL + `/items/${item._id}`)
+    .then((res) =>{} )
+    .catch((err) => console.log('Error form EditItemd_deleteClick'))
   }
 
   const createItem = (item) => {
-    // TODO Zack: implement create item
+    axios.post(API_URL + `/items/`,item)
+    .then()
+    .catch((err) => {
+      console.log('Error in CreateItem!')
+    })
   }
 
-  const putItem = (item) => {
-    // TODO Zack: implement put item
+  const putItem = (item, data) => {
+    axios.put(API_URL + `/items/${item._id}`, data)
+    .then((res) =>{} )
+    .catch((err) => console.log('Error form EditItem_SubmitClick'))
   }
 
   return isLoading ? (
