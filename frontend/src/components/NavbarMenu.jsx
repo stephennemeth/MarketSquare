@@ -39,7 +39,7 @@ export function NavbarMenu() {
                 onClick={handleOpen}>
                 Create Item
             </Button>),
-            (<CreateItemModal open = {open} handleClose={handleClose}/>),
+            (<CreateItemModal key="create-modal" open = {open} handleClose={handleClose}/>),
             (<Button key="logout" color="inherit" variant="outlined" onClick={logoutHandler}>Logout</Button>)
         ]
     } else {

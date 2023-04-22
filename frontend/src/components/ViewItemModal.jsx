@@ -45,7 +45,7 @@ export function ViewItemModal({ openChild, handleChildClose, item }) {
                         </Grid2>
                         <Grid2 item xs={12} sm={6}>
                             <p>Condition:</p>
-                            {item.condtition}
+                            {item.condition}
                         </Grid2>
                         <CardMedia
                             sx={{ objectFit: 'contain' }}
