@@ -24,7 +24,6 @@ usersRouter.get("/:id", auth, async (req, res) => {
 usersRouter.post("/", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 8)
-
         const newUser = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -34,8 +33,7 @@ usersRouter.post("/", async (req, res) => {
             password: hashedPassword
         })
 
-        const exists = User.findOne(newUser)
-
+        const exists = await User.findOne({username : req.body.username})
         if (exists) {
             return res.status(401).json({msg : "A User with these credentials exists"})
         }
