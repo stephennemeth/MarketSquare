@@ -22,12 +22,12 @@ export function CreateItemModal({open, handleClose}) {
     const itemPush = () => {
 
         
-        if (document.getElementById('item-name').value == '') document.getElementById('item-name').value = ' '
-        if (document.getElementById('item-price').value == '') document.getElementById('item-price').value = 0.00
-        if (document.getElementById('item-description').value == '') document.getElementById('item-description').value = ' '
-        if (document.getElementById('item-condition').value == '') document.getElementById('item-condition').value = ' '
-        if (document.getElementById('item-owner').value == '') document.getElementById('item-owner').value = ' '
-        if (document.getElementById('item-image-url').value == '') document.getElementById('item-image-url').value = "https://princetoncryo.com/media/catalog/category/default_product.jpg"
+        if (document.getElementById('item-name').value === '') document.getElementById('item-name').value = ' '
+        if (document.getElementById('item-price').value === '') document.getElementById('item-price').value = 0.00
+        if (document.getElementById('item-description').value === '') document.getElementById('item-description').value = ' '
+        if (document.getElementById('item-condition').value === '') document.getElementById('item-condition').value = ' '
+        if (document.getElementById('item-owner').value === '') document.getElementById('item-owner').value = ' '
+        if (document.getElementById('item-image-url').value === '') document.getElementById('item-image-url').value = "https://princetoncryo.com/media/catalog/category/default_product.jpg"
         const myItem = 
             {
             name: document.getElementById('item-name').value,
@@ -56,11 +56,11 @@ export function CreateItemModal({open, handleClose}) {
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 </Typography>
-                <TextField id="item-name" label="Item Name" defaultValue=" " variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-price" label="Price"  defaultValue=" " variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-description" label="Description" defaultValue=" " variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-condition" label="Condition" defaultValue=" " variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-owner" label="Current Owner" defaultValue=" " variant="outlined" sx={{ mt: 2 }} />
+                <TextField id="item-name" label="Item Name" variant="outlined" sx={{ mt: 2 }} />
+                <TextField id="item-price" label="Price"  variant="outlined" sx={{ mt: 2 }} />
+                <TextField id="item-description" label="Description" variant="outlined" sx={{ mt: 2 }} />
+                <TextField id="item-condition" label="Condition" variant="outlined" sx={{ mt: 2 }} />
+                <TextField id="item-owner" label="Current Owner" variant="outlined" sx={{ mt: 2 }} />
                 <TextField id="item-image-url" label="Image url" variant="outlined" sx={{ mt: 2 }} />
                 <br />
                 <Button onClick={() => { itemPush() }} sx={{ mt: 3 }} variant='outlined'>Submit</Button>
