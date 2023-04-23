@@ -10,7 +10,7 @@ import { ItemsContext } from "../context/ItemsContextProvider";
 export default function Home() {
 
   const { getAllItems } = useContext(ItemsContext);
-  console.log("Loading home with items: ", getAllItems());
+  
 
   return (
     <>
@@ -22,6 +22,7 @@ export default function Home() {
               <Grid key={item._id} item xs={12} md={4}>
                 <ShopItemGalleryCard
                   item={item}
+                  key={item._id}
                 />
               </Grid>
             ))}
