@@ -38,6 +38,12 @@ usersRouter.post("/", async (req, res) => {
             return res.status(401).json({status : 1})
         }
 
+        const emailExists = await User.findOne({email : req.body.email})
+        
+        if (emailExists) {
+            return res.status(401).json({status : 2})
+        }
+
         const createResponse = await User.create(newUser)
         const token = jwt.sign({id : createResponse._id}, "passwordKey")
         return res.status(201).json({msg: "User successfully created", token, createResponse})

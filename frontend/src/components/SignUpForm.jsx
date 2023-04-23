@@ -39,8 +39,11 @@ const SignUpForm = () => {
     const createUserAndLogin = async () => {
         const newUser = {firstName, lastName, email, number, username, password}
         const signUpResponse = await axios.post("http://localhost:8082/api/users/", newUser).catch((error) => {
+            console.log(error)
             if (error.response.data.status === 1 ) {
                 throw new Error("A user with that username already exists")
+            } else if (error.response.data.status === 2) {
+                throw new Error("That email is already in use")
             } else {
                 throw new Error("There was an error making your account")
             }
