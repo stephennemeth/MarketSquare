@@ -38,9 +38,9 @@ usersRouter.post("/", async (req, res) => {
             return res.status(401).json({status : 1})
         }
 
-        newUser.save()
-
-        return res.status(201).json({msg: "User successfully created"})
+        const createResponse = await User.create(newUser)
+        const token = jwt.sign({id : createResponse._id}, "passwordKey")
+        return res.status(201).json({msg: "User successfully created", token, createResponse})
 
     } catch (error) {
         return res.status(500).json({error: error.message})
