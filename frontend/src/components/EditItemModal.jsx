@@ -20,6 +20,12 @@ export function EditItemModal({ parentOpen, handleClose, item}) {
         handleClose();
     }
     const handleSubmit = () => {
+        if (document.getElementById('edit-item').value == '') document.getElementById('edit-item').value = ' '
+        if (document.getElementById('edit-price').value == '') document.getElementById('edit-price').value = 0.00
+        if (document.getElementById('edit-description').value == '') document.getElementById('edit-description').value = ' '
+        if (document.getElementById('edit-condition').value == '') document.getElementById('edit-condition').value = ' '
+        if (document.getElementById('edit-owner').value == '') document.getElementById('edit-owner').value = ' '
+        if (document.getElementById('edit-image-url').value == '') document.getElementById('edit-image-url').value = "https://princetoncryo.com/media/catalog/category/default_product.jpg"
 
           item.name = document.getElementById('edit-item').value
           item.price = document.getElementById('edit-price').value
