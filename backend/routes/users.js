@@ -35,7 +35,7 @@ usersRouter.post("/", async (req, res) => {
 
         const exists = await User.findOne({username : req.body.username})
         if (exists) {
-            return res.status(401).json({msg : "A User with these credentials exists"})
+            return res.status(401).json({status : 1})
         }
 
         newUser.save()
@@ -52,16 +52,15 @@ usersRouter.post('/login', async (req, res) => {
         const username = req.body.username
         const user = await User.findOne({username})
         if (!user || user === null) { 
-            return res.status(400)
+            return res.status(400).json({status : 1})
         }   
-
         const same = await bcrypt.compare(req.body.password, user.password)
         
         if (same) {
             const token = jwt.sign({id : user._id}, "passwordKey")
             return res.status(200).json({msg: "success", name: user.firstName, token, id : user._id})
         } else {
-            return res.status(400).json({msg: "password is incorrect"})
+            return res.status(400).json({status : 2})
         }
     } catch (error) {
         return res.status(500).json({error : error.message})

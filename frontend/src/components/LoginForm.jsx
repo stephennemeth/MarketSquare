@@ -39,12 +39,21 @@ const LoginForm = () => {
         {
             username,
             password
+        }).catch((error) => {
+            if (error.response.data.status === 1) {
+                throw new Error("No user with that username was found")
+            } else if (error.response.data.status === 2) {
+                throw new Error("Incorrect Password")
+            } else {
+                throw new Error("Error logging in")
+            }
         })
-        console.log(loginResponse.data)
-        localStorage.setItem("token", loginResponse.data.token)
-        localStorage.setItem("id", loginResponse.data.id)
-        setUser({name : loginResponse.data.name, token: loginResponse.data.token, id : loginResponse.data.id})
-        setAuthState(true)
+        if (loginResponse) {
+            localStorage.setItem("token", loginResponse.data.token)
+            localStorage.setItem("id", loginResponse.data.id)
+            setUser({name : loginResponse.data.name, token: loginResponse.data.token, id : loginResponse.data.id})
+            setAuthState(true)
+        }
     }
 
     return (

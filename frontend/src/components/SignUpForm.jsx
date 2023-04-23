@@ -38,17 +38,24 @@ const SignUpForm = () => {
 
     const createUserAndLogin = async () => {
         const newUser = {firstName, lastName, email, number, username, password}
-        await axios.post("http://localhost:8082/api/users/", newUser)
+        await axios.post("http://localhost:8082/api/users/", newUser).catch((error) => {
+            if (error.response.data.status ===1 ) {
+                throw new Error("A user with that username already exists")
+            } else {
+                throw new Error("There was an error making your account")
+            }
+        })
         const loginResponse = await axios.post("http://localhost:8082/api/users/login",
         {
             username,
             password
         })
-
-        localStorage.setItem("token", loginResponse.data.token)
-        localStorage.setItem("id", loginResponse.data.id)
-        setUser({name: loginResponse.data.name, token: loginResponse.data.token, id : loginResponse.data.id})
-        setAuthState(true)
+        if (loginResponse) {
+            localStorage.setItem("token", loginResponse.data.token)
+            localStorage.setItem("id", loginResponse.data.id)
+            setUser({name: loginResponse.data.name, token: loginResponse.data.token, id : loginResponse.data.id})
+            setAuthState(true)
+        }
     }
 
     return (
