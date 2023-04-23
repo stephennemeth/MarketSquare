@@ -32,18 +32,18 @@ export function ViewItemModal({ openChild, handleChildClose, item }) {
                         Info: {item.name}
                     </Typography>
                     <Grid2 container spacing={2} className='text-field-container'>
-                        <Grid2 item xs={12} sm={6}>
+                        <Grid2 xs={12} sm={6}>
                             <p>Owner:</p> {item.owner}
                         </Grid2>
-                        <Grid2 item xs={12} sm={6}>
+                        <Grid2 xs={12} sm={6}>
                             <p>Description:</p>
                             {item.description}
                         </Grid2>
-                        <Grid2 item xs={12} sm={6}>
+                        <Grid2 xs={12} sm={6}>
                             <p>Price:</p>
                             ${item.price}
                         </Grid2>
-                        <Grid2 item xs={12} sm={6}>
+                        <Grid2 xs={12} sm={6}>
                             <p>Condition:</p>
                             {item.condition}
                         </Grid2>
