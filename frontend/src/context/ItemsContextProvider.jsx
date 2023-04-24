@@ -39,7 +39,7 @@ export const ItemsContextProvider = ({ children }) => {
         item._id = res.data._id;
         setAllShopItems([...allShopItems, item]);
         console.log("Created item: ", item, res);
-        //fetchAllShopItems();
+        fetchAllShopItems();
       })
       .catch((err) => {
         console.log('Error in CreateItem!')
