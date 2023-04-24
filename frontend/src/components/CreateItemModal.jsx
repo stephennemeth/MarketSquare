@@ -4,7 +4,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { useContext } from 'react'
 import { ItemsContext } from "../context/ItemsContextProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from '@mui/material/Input';
 
 const style = {
@@ -91,6 +91,10 @@ export function CreateItemModal({open, handleClose}) {
         zeroValues();
         handleClose();
     }
+
+    useEffect(() => {
+        zeroValues()
+    }, [])
     return(
     <Modal
         key="create-modal"
