@@ -4,8 +4,11 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { useContext } from 'react'
 import { ItemsContext } from "../context/ItemsContextProvider";
+import { useState } from "react";
+import Input from '@mui/material/Input';
 
 const style = {
+    '& > :not(style)': { m: 2 },
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -15,30 +18,77 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    
 };
+
+const ariaLabel = { 'aria-label': 'description' };
 
 export function CreateItemModal({open, handleClose}) {
     const { createItem } = useContext(ItemsContext);
-    const itemPush = () => {
+    const [itemName, setName] = useState();
+    const [itemPrice, setPrice] = useState();
+    const [itemDescription, setDescription] = useState();
+    const [itemCondition, setCondition] = useState();
+    const [itemOwner, setOwner] = useState();
+    const [itemURL, setURL] = useState();
+    const changeName = event => {
+        const newName = event.target.value;
+        setName(newName)
+    }
+    const changePrice = event => {
+        const newPrice = event.target.value;
+        setPrice(newPrice)
+    }
+    const defIMG = "https://princetoncryo.com/media/catalog/category/default_product.jpg"
+    const changeDescription = event => {
+        const newPrice = event.target.value;
+        setDescription(newPrice)
+    }
+    const changeCondition = event => {
+        const newCondition = event.target.value;
+        setCondition(newCondition)
+    }   
+    const changeOwner = event => {
+        const newOwner = event.target.value;
+        setOwner(newOwner)
+    }
 
-        
-        if (document.getElementById('item-name').value === '') document.getElementById('item-name').value = ' '
-        if (document.getElementById('item-price').value === '') document.getElementById('item-price').value = 0.00
-        if (document.getElementById('item-description').value === '') document.getElementById('item-description').value = ' '
-        if (document.getElementById('item-condition').value === '') document.getElementById('item-condition').value = ' '
-        if (document.getElementById('item-owner').value === '') document.getElementById('item-owner').value = ' '
-        if (document.getElementById('item-image-url').value === '') document.getElementById('item-image-url').value = "https://princetoncryo.com/media/catalog/category/default_product.jpg"
+    const changeURL = event => {
+        const newURL = event.target.value;
+        setURL(newURL)
+    }
+
+    const zeroValues = () => {
+        setName(null)
+        setPrice(null)
+        setDescription(null)
+        setCondition(null)
+        setOwner(null)
+        setURL(null)
+    }
+    const itemPush = () => {
+        if(itemURL === null){
+            setURL(defIMG)
+        }
+        console.log("Item name: " + itemName)
+        // if(itemPrice === null) setPrice(0)
+        // if(itemDescription === null) setDescription("[NULL]")
+        // if(itemCondition === null) setCondition("[NULL]")
+        // if(itemOwner === null) setOwner("[NULL]")
+        // if(itemURL === null) setName("https://princetoncryo.com/media/catalog/category/default_product.jpg")
+
         const myItem = 
             {
-            name: document.getElementById('item-name').value,
-            price: document.getElementById('item-price').value,
-            description: document.getElementById('item-description').value,
-            condition: document.getElementById('item-condition').value,
-            owner: document.getElementById('item-owner').value,
-            thumbnailUrl: document.getElementById('item-image-url').value,
+            name: itemName,
+            price: itemPrice,
+            description: itemDescription,
+            condition: itemCondition,
+            owner: itemOwner,
+            thumbnailUrl: itemURL
+            
         }
-
         createItem(myItem);
+        zeroValues();
         handleClose();
     }
     return(
@@ -49,22 +99,32 @@ export function CreateItemModal({open, handleClose}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
     >
-        <Box sx={style}>
-            <form className="new-item-form">
+        <Box
+            component="form"
+            sx={style}
+            noValidate
+            autoComplete="off">
+            {/* <form className="new-item-form"> */}
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Create new item:
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                </Typography>
-                <TextField id="item-name" label="Item Name" variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-price" label="Price"  variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-description" label="Description" variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-condition" label="Condition" variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-owner" label="Current Owner" variant="outlined" sx={{ mt: 2 }} />
-                <TextField id="item-image-url" label="Image url" variant="outlined" sx={{ mt: 2 }} />
+                <Input id = "thisItem" placeholder = "Item Name" onChange = {changeName} value = {itemName}  inputProps={ariaLabel}/>
+                <Input placeholder = "Item Price" onChange = {changePrice} value = {itemPrice}  sx={{ mt: 2 }}/>
+                <Input placeholder = "Item Description" onChange = {changeDescription} value = {itemDescription}  inputProps={ariaLabel}/>
+                <Input placeholder = "Item Condition" onChange = {changeCondition} value = {itemCondition}  inputProps={ariaLabel}/>
+                <Input placeholder = "Item Owner" onChange = {changeOwner} value = {itemOwner}  inputProps={ariaLabel}/>
+                <Input placeholder = "Item Image URL" onChange = {changeURL} value = {itemURL}  inputProps={ariaLabel}/>
                 <br />
-                <Button onClick={() => { itemPush() }} sx={{ mt: 3 }} variant='outlined'>Submit</Button>
-            </form>
+                <Button onClick={() => { itemPush() }} sx={{ mt: 3 }} variant='outlined' disabled = 
+                {itemName === null || 
+                itemPrice === null ||
+                itemDescription === null ||
+                itemCondition === null ||
+                itemOwner === null ||
+                itemURL === null}
+                >Submit
+                </Button>
+            {/* </form> */}
         </Box>
     </Modal>
     )
